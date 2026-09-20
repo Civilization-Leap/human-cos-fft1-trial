@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "human-cos-runtime"
+version = "0.1.0"
+description = "Human-COS Runtime — Deterministic Orchestrator; process authority separated from cognitive authority."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Human-COS Core Team" }]
+dependencies = [
+    "PyYAML>=6.0",
+    "jsonschema>=4.18,<5",
+    "pydantic>=2.5,<3",
+    "fastapi>=0.110,<1",
+    "psycopg[binary]>=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pre-commit>=3.6",
+]
+
+[project.scripts]
+human-cos-protocols = "human_cos.protocols.cli:main"
+human-cos-trial = "human_cos.trial.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+human_cos = [
+    "_build_commit.txt",
+    "_resources/*.yaml",
+    "_resources/protocols/*.yaml",
+    "_resources/schemas/*.json",
+    "_resources/migrations/*.sql",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["human_cos"]
+strict = true
+# PyYAML ships no type stubs; tolerate untyped third-party imports.
+ignore_missing_imports = true

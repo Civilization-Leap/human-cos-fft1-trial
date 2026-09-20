@@ -1,0 +1,57 @@
+"""S5-CDE3 Domain catalog, task contracts, routing and trusted execution."""
+
+from .catalog import BASELINE_DOMAIN_CATALOG, DomainDescriptor, get_domain_descriptor
+from .contracts import (
+    DomainContractError,
+    DomainOutputContent,
+    DomainOutputPayload,
+    DomainOutputRecord,
+    DomainTask,
+    DomainTaskPayload,
+    bind_domain_output,
+    build_domain_task,
+    freeze_domain_output_payload,
+    freeze_domain_task,
+)
+from .routing import (
+    DomainRoute,
+    DomainRouteDecision,
+    DomainRoutePayload,
+    DomainRoutingEntry,
+    DomainRoutingPlan,
+    DomainRoutingPlanPayload,
+    assert_domain_output_set,
+    assert_domain_route_binding,
+    assert_domain_routing_plan_binding,
+    build_domain_routing_plan,
+    route_domain_task,
+    run_qualified_domain_task,
+)
+
+__all__ = [
+    "BASELINE_DOMAIN_CATALOG",
+    "DomainContractError",
+    "DomainDescriptor",
+    "DomainOutputContent",
+    "DomainOutputPayload",
+    "DomainOutputRecord",
+    "DomainRoute",
+    "DomainRouteDecision",
+    "DomainRoutePayload",
+    "DomainRoutingEntry",
+    "DomainRoutingPlan",
+    "DomainRoutingPlanPayload",
+    "DomainTask",
+    "DomainTaskPayload",
+    "assert_domain_output_set",
+    "assert_domain_route_binding",
+    "assert_domain_routing_plan_binding",
+    "bind_domain_output",
+    "build_domain_routing_plan",
+    "build_domain_task",
+    "freeze_domain_output_payload",
+    "freeze_domain_task",
+    "get_domain_descriptor",
+    "route_domain_task",
+    "run_qualified_domain_task",
+]

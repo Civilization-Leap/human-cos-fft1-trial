@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Human-COS Case",
+  "type": "object",
+  "required": [
+    "case_id",
+    "revision",
+    "case_mode",
+    "question",
+    "protocol_version",
+    "phase_profile",
+    "time_boundary",
+    "publication_policy"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "case_mode": {
+      "enum": [
+        "HISTORICAL_BLIND_EVAL",
+        "LIVE_FORESIGHT",
+        "MECHANISM_BENCHMARK",
+        "SCENARIO_STRESS_TEST"
+      ]
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocol_version": {
+      "type": "string"
+    },
+    "phase_profile": {
+      "$ref": "phase-profile.schema.json"
+    },
+    "time_boundary": {
+      "type": "object",
+      "required": [
+        "T0"
+      ],
+      "properties": {
+        "T0": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "publication_policy": {
+      "enum": [
+        "PUBLIC",
+        "RESTRICTED",
+        "WITHHELD"
+      ]
+    },
+    "state": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

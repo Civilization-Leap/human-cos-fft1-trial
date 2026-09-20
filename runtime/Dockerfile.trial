@@ -1,0 +1,35 @@
+# TRIAL-SBX5 clean-wheel runner. Build networking exists only while resolving the
+# frozen package; the resulting operator container runs on a compose internal network.
+FROM python:3.12-slim AS wheel-builder
+
+ENV PIP_NO_CACHE_DIR=1 \
+    PYTHONDONTWRITEBYTECODE=1
+WORKDIR /build
+
+COPY pyproject.toml uv.lock README.md LICENSE NOTICE LICENSE_SCOPE.md ./
+COPY src ./src
+COPY .human-cos-checked-out-commit ./checked-out-commit.sha
+RUN grep -Eq '^[0-9a-f]{40}$' checked-out-commit.sha \
+    && test "$(wc -l < checked-out-commit.sha)" -eq 1 \
+    && cp checked-out-commit.sha src/human_cos/_build_commit.txt \
+    && python -m pip install uv==0.11.33 setuptools==80.9.0 \
+    && uv export --frozen --no-dev --no-emit-project \
+        --format requirements-txt --output-file requirements.txt \
+    && python -m pip wheel --require-hashes --wheel-dir /wheels \
+        --requirement requirements.txt \
+    && python -m pip wheel --no-deps --no-build-isolation --wheel-dir /wheels .
+
+FROM python:3.12-slim AS trial-runner
+
+ENV PIP_NO_CACHE_DIR=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+RUN groupadd --system trial && useradd --system --gid trial --home-dir /nonexistent trial \
+    && mkdir /trial && chown trial:trial /trial
+COPY --from=wheel-builder /wheels /wheels
+RUN python -m pip install --no-index --find-links=/wheels human-cos-runtime \
+    && rm -rf /wheels
+USER trial:trial
+WORKDIR /trial
+ENTRYPOINT ["human-cos-trial"]
+CMD ["rehearse-installed", "/trial/sbx5"]

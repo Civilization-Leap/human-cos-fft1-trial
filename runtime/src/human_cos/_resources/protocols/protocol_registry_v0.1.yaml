@@ -1,0 +1,49 @@
+registry_version: "0.1"
+status: FROZEN
+change_control: "RFC + regression impact review"
+protocols:
+  - id: T0_FREEZE
+    version: "0.1"
+    status: FROZEN
+    purpose: "时间边界、后见隔离、Reveal规则"
+    merge_blocking_tests: [AT-01, AT-03]
+  - id: CONTAMINATION
+    version: "0.1"
+    status: FROZEN
+    purpose: "识别污染、后见补全、跨组串扰、INVALID Gate"
+    merge_blocking_tests: [AT-05]
+  - id: INDEPENDENCE
+    version: "0.1"
+    status: FROZEN
+    purpose: "独立性标签、跨模型族要求、专家隔离"
+    merge_blocking_tests: [AT-02, AT-09, AT-12]
+  - id: BASELINE_PARITY
+    version: "0.1"
+    status: FROZEN
+    purpose: "同证据/时间/工具/预算/输出结构的对称要求"
+    merge_blocking_tests: [AT-11]
+  - id: DISSENT
+    version: "0.1"
+    status: FROZEN
+    purpose: "少数意见保存、升级与未解决分歧"
+    merge_blocking_tests: [AT-07]
+  - id: FALSIFICATION
+    version: "0.1"
+    status: FROZEN
+    purpose: "wrong_if / downgrade_if / upgrade_if / rollback_if"
+    merge_blocking_tests: [AT-08]
+  - id: QUALIFICATION
+    version: "0.1"
+    status: FROZEN
+    purpose: "Controller与专业任务的资格准入及Capability Gap"
+    merge_blocking_tests: [AT-13, AT-14]
+  - id: SAFETY
+    version: "0.1"
+    status: FROZEN
+    purpose: "Evidence-as-data、Tool allowlist、双重用途与敏感信息"
+    merge_blocking_tests: [AT-15, AT-16]
+  - id: PUBLICATION
+    version: "0.1"
+    status: FROZEN
+    purpose: "PUBLIC / RESTRICTED / WITHHELD 与人工审批"
+    merge_blocking_tests: [AT-18]

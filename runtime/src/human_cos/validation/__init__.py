@@ -1,0 +1,73 @@
+"""Authorized S4-V Validation-Lab control/data substrate."""
+
+from human_cos.validation.contamination import (
+    ContaminationFacts,
+    ContaminationGateReport,
+    InvalidGateError,
+    InvalidGateIntegrityError,
+    RecognitionPrecheckFacts,
+    RecognitionPrecheckReport,
+    evaluate_contamination_gate,
+    evaluate_recognition_precheck,
+    require_contamination_pass,
+    require_recognition_precheck_pass,
+    store_contamination_gate,
+    store_recognition_precheck,
+)
+from human_cos.validation.manifest import (
+    ExperimentManifest,
+    ExperimentManifestDraft,
+    ExperimentRegistration,
+    ManifestIntegrityError,
+    get_experiment_registration,
+    preregister_manifest,
+    store_experiment_registration,
+    validate_experiment_manifest,
+)
+from human_cos.validation.parity import (
+    ParityDeclaration,
+    ParityDimensionResult,
+    ParityReport,
+    evaluate_parity,
+    store_parity_report,
+)
+from human_cos.validation.tracks import (
+    TrackBinding,
+    TrackBindingDraft,
+    freeze_track_binding,
+    get_track_binding,
+    store_track_binding,
+)
+
+__all__ = [
+    "ContaminationFacts",
+    "ContaminationGateReport",
+    "ExperimentManifest",
+    "ExperimentManifestDraft",
+    "ExperimentRegistration",
+    "InvalidGateError",
+    "InvalidGateIntegrityError",
+    "ManifestIntegrityError",
+    "ParityDeclaration",
+    "ParityDimensionResult",
+    "ParityReport",
+    "RecognitionPrecheckFacts",
+    "RecognitionPrecheckReport",
+    "TrackBinding",
+    "TrackBindingDraft",
+    "evaluate_contamination_gate",
+    "evaluate_parity",
+    "evaluate_recognition_precheck",
+    "freeze_track_binding",
+    "get_experiment_registration",
+    "get_track_binding",
+    "preregister_manifest",
+    "require_contamination_pass",
+    "require_recognition_precheck_pass",
+    "store_contamination_gate",
+    "store_experiment_registration",
+    "store_parity_report",
+    "store_recognition_precheck",
+    "store_track_binding",
+    "validate_experiment_manifest",
+]

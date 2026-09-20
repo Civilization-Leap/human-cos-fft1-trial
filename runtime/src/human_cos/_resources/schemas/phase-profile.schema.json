@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase Profile",
+  "type": "object",
+  "required": [
+    "civilization_stage",
+    "case_phase"
+  ],
+  "properties": {
+    "civilization_stage": {
+      "enum": [
+        "STARTUP",
+        "TRANSITION",
+        "STABLE",
+        "SELF_MAINTAINING"
+      ]
+    },
+    "case_phase": {
+      "enum": [
+        "DISCOVERY",
+        "ESCALATION",
+        "CRITICAL",
+        "RECOVERY",
+        "OTHER"
+      ]
+    },
+    "policy_constraints_profile": {
+      "type": "string"
+    },
+    "reversibility_priority": {
+      "type": "string"
+    },
+    "rights_and_governance_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "emergency_scope": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

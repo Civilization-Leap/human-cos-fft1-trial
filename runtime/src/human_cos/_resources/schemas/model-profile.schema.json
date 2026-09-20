@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Model Profile",
+  "type": "object",
+  "required": [
+    "model_id",
+    "model_family",
+    "provider",
+    "status",
+    "role_eligibility"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string"
+    },
+    "model_family": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "CANDIDATE",
+        "QUALIFIED",
+        "RESTRICTED",
+        "DISABLED"
+      ]
+    },
+    "role_eligibility": {
+      "type": "object",
+      "properties": {
+        "meta_controller": {
+          "type": "boolean"
+        },
+        "challenger": {
+          "type": "boolean"
+        },
+        "evaluator": {
+          "type": "boolean"
+        },
+        "domain_worker": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "controller_qualification": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "framing_recall": {
+          "type": "number"
+        },
+        "cross_domain_coverage": {
+          "type": "number"
+        },
+        "causal_integration": {
+          "type": "number"
+        },
+        "critical_node_detection": {
+          "type": "number"
+        },
+        "dissent_preservation": {
+          "type": "number"
+        },
+        "evidence_discipline": {
+          "type": "number"
+        },
+        "falsification_quality": {
+          "type": "number"
+        },
+        "calibration": {
+          "type": "number"
+        },
+        "adversarial_robustness": {
+          "type": "number"
+        },
+        "tool_reasoning": {
+          "type": "number"
+        },
+        "benchmark_version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "domain_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "domain",
+          "task_type",
+          "eligibility"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "task_type": {
+            "enum": [
+              "evidence_interpretation",
+              "mechanism_analysis",
+              "causal_inference",
+              "quantitative_reasoning",
+              "scenario_analysis",
+              "policy_constraint_analysis",
+              "source_research"
+            ]
+          },
+          "eval_set_version": {
+            "type": "string"
+          },
+          "expert_review_status": {
+            "type": "string"
+          },
+          "calibration_error": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "known_failure_modes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tool_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "freshness_requirement": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "eligibility": {
+            "enum": [
+              "CANDIDATE",
+              "QUALIFIED",
+              "RESTRICTED"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

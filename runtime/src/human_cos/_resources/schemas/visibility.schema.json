@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visibility",
+  "type": "object",
+  "required": [
+    "public",
+    "actor_ids",
+    "role_ids"
+  ],
+  "properties": {
+    "public": {
+      "type": "boolean"
+    },
+    "actor_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "role_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

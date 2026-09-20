@@ -1,0 +1,10 @@
+Human-COS FFT-1 narrow trial
+Project: Civilization Leap Research Group
+
+Original project material in LICENSE_SCOPE.md is distributed under Apache-2.0.
+The project owner approved this grant on 2026-09-20.
+This notice does not assert ownership of third-party components or modify their terms.
+
+The ZIP does not bundle dependency wheels or container images. Build commands
+retrieve them separately. Retain upstream licenses and notices if redistributing
+those components or a resulting image; the project license does not replace them.

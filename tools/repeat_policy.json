@@ -1,0 +1,137 @@
+{
+  "format": "fft1b-bounded-clock-policy-v1",
+  "candidate_sha": "bc324b68814dddb388e3e6cebab0d31a38ef6817",
+  "storage_created_at_tables": [
+    "human_cos_audit_event",
+    "human_cos_case_revision",
+    "human_cos_context_admission",
+    "human_cos_domain_output",
+    "human_cos_domain_route",
+    "human_cos_domain_routing_plan",
+    "human_cos_domain_task",
+    "human_cos_framing_requirement",
+    "human_cos_framing_review",
+    "human_cos_initial_framing",
+    "human_cos_raw_output",
+    "human_cos_run_manifest_revision",
+    "human_cos_s6_actor_state_revision",
+    "human_cos_s6_causal_graph_revision",
+    "human_cos_s6_critical_integration",
+    "human_cos_s6_critical_node_detection",
+    "human_cos_s6_critical_review_plan",
+    "human_cos_s6_cross_exam_response",
+    "human_cos_s6_cross_exam_task",
+    "human_cos_s6_disagreement_node",
+    "human_cos_s6_disclosure_grant",
+    "human_cos_s6_world_state_revision",
+    "human_cos_s7_artifact",
+    "human_cos_s7_artifact_link",
+    "human_cos_s8_artifact",
+    "human_cos_s8_artifact_link"
+  ],
+  "clock_paths": [
+    "human_cos_audit_event/.payload.timestamp",
+    "human_cos_context_admission/.payload.reference_time",
+    "human_cos_domain_output/.payload.finished_at",
+    "human_cos_initial_framing/.payload.finished_at",
+    "human_cos_run_manifest_revision/.payload.finished_at",
+    "human_cos_run_manifest_revision/.payload.started_at",
+    "human_cos_s6_actor_state_revision/.payload.frozen_at",
+    "human_cos_s6_actor_state_revision/.payload.timestamp",
+    "human_cos_s6_causal_graph_revision/.payload.frozen_at",
+    "human_cos_s6_world_state_revision/.payload.frozen_at",
+    "human_cos_s6_world_state_revision/.payload.timestamp",
+    "human_cos_s7_artifact/AT17_EVIDENCE.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_FINDING.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_GATE.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_PACKET.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_RESPONSE.payload.findings[].frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_RESPONSE.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_SATISFACTION.payload.frozen_at",
+    "human_cos_s7_artifact/CHALLENGER_TASK.payload.frozen_at",
+    "human_cos_s7_artifact/CONTROLLER_C_OUTPUT.payload.frozen_at",
+    "human_cos_s7_artifact/RERUN_OUTPUT.payload.finished_at",
+    "human_cos_s7_artifact/RERUN_ROUTE.payload.routed_at",
+    "human_cos_s7_artifact/RERUN_TASK.payload.frozen_at",
+    "human_cos_s7_artifact/RESIMULATION_PLAN.payload.frozen_at",
+    "human_cos_s7_artifact/RESIMULATION_PLAN.payload.rerun_tasks[].frozen_at",
+    "human_cos_s7_artifact/RESIMULATION_RESULT.payload.frozen_at",
+    "human_cos_s7_artifact/RESIMULATION_SAFETY_ADMISSION.payload.frozen_at",
+    "human_cos_s7_artifact/RESIMULATION_SAFETY_RESULT.payload.frozen_at",
+    "human_cos_s7_artifact/SCENARIO_PATH.payload.frozen_at",
+    "human_cos_s7_artifact/SCENARIO_SET.payload.frozen_at",
+    "human_cos_s7_artifact/SCENARIO_SET.payload.paths[].frozen_at",
+    "human_cos_s8_artifact/EVALUATION_EVIDENCE_BINDING.payload.frozen_at",
+    "human_cos_s8_artifact/EVALUATOR_FINDING.payload.frozen_at",
+    "human_cos_s8_artifact/EVALUATOR_INPUT_PACKET.payload.frozen_at",
+    "human_cos_s8_artifact/EVALUATOR_RESULT.payload.frozen_at",
+    "human_cos_s8_artifact/EVALUATOR_TASK.payload.frozen_at",
+    "human_cos_s8_artifact/HC_REGRESSION_METRIC_SOURCE.payload.frozen_at",
+    "human_cos_s8_artifact/HC_REGRESSION_METRIC_SOURCE.payload.observed_at",
+    "human_cos_s8_artifact/HC_REGRESSION_PREREGISTRATION.payload.preregistered_at",
+    "human_cos_s8_artifact/HC_REGRESSION_REPORT.payload.frozen_at",
+    "human_cos_s8_artifact/HC_REGRESSION_TRACK_SNAPSHOT.payload.frozen_at",
+    "human_cos_s8_artifact/LOW_RECOGNITION_EXPOSURE_SNAPSHOT.payload.frozen_at",
+    "human_cos_s8_artifact/LOW_RECOGNITION_EXPOSURE_SOURCE.payload.frozen_at",
+    "human_cos_s8_artifact/LOW_RECOGNITION_EXPOSURE_SOURCE.payload.observed_at",
+    "human_cos_s8_artifact/LOW_RECOGNITION_GATE.payload.frozen_at",
+    "human_cos_s8_artifact/LOW_RECOGNITION_VISIBILITY_POLICY.payload.frozen_at"
+  ],
+  "unordered_paths": [
+    "human_cos_s7_artifact/SCENARIO_SET.payload.paths",
+    "human_cos_s7_artifact/CONTROLLER_C_OUTPUT.payload.scenario_path_hashes"
+  ],
+  "synthetic_s8_offsets_seconds": {
+    "low-recognition-source:sbx5": {
+      "frozen_at": 1,
+      "observed_at": 0
+    },
+    "evaluator-packet:hc-regression:sbx5": {
+      "frozen_at": 3
+    },
+    "evaluator-packet:low-recognition:sbx5": {
+      "frozen_at": 3
+    },
+    "low-recognition-policy:sbx5": {
+      "frozen_at": 4
+    },
+    "hc-regression:sbx5": {
+      "preregistered_at": 4
+    },
+    "evaluator-task:hc-regression:sbx5": {
+      "frozen_at": 2
+    },
+    "evaluator-task:low-recognition:sbx5": {
+      "frozen_at": 2
+    },
+    "low-recognition-snapshot:sbx5": {
+      "frozen_at": 5
+    },
+    "hc-metric-source:baseline:sbx5": {
+      "frozen_at": 1,
+      "observed_at": 0
+    },
+    "hc-snapshot:baseline:sbx5": {
+      "frozen_at": 5
+    },
+    "hc-metric-source:hc:sbx5": {
+      "frozen_at": 1,
+      "observed_at": 0
+    },
+    "hc-snapshot:hc:sbx5": {
+      "frozen_at": 5
+    },
+    "low-recognition-gate:sbx5": {
+      "frozen_at": 6
+    },
+    "hc-regression-binding:sbx5": {
+      "frozen_at": 7
+    },
+    "low-recognition-binding:sbx5": {
+      "frozen_at": 7
+    },
+    "hc-regression-report:sbx5": {
+      "frozen_at": 6
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audit Event",
+  "type": "object",
+  "required": [
+    "event_id",
+    "timestamp",
+    "actor_type",
+    "actor_id",
+    "event_type",
+    "object_ref"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor_type": {
+      "enum": [
+        "SYSTEM",
+        "MODEL",
+        "HUMAN"
+      ]
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "case_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "object_ref": {
+      "type": "string"
+    },
+    "before_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "after_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "signature_or_attestation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

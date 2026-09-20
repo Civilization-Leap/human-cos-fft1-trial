@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Run Manifest",
+  "type": "object",
+  "required": [
+    "run_id",
+    "case_id",
+    "stage",
+    "role_type",
+    "model_id",
+    "model_family",
+    "provider",
+    "protocol_version",
+    "context_manifest_hash",
+    "status",
+    "independence"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "role_type": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "model_family": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "protocol_version": {
+      "type": "string"
+    },
+    "context_manifest_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "prompt_version": {
+      "type": "string"
+    },
+    "tool_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "CREATED",
+        "RUNNING",
+        "FROZEN",
+        "INVALID",
+        "FAILED"
+      ]
+    },
+    "parent_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fallback_from": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_output_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_output_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "structured_output_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "independence": {
+      "type": "object",
+      "required": [
+        "context",
+        "prompt",
+        "model_family",
+        "provider",
+        "evidence_path"
+      ],
+      "properties": {
+        "context": {
+          "type": "boolean"
+        },
+        "prompt": {
+          "type": "boolean"
+        },
+        "model_family": {
+          "type": "boolean"
+        },
+        "provider": {
+          "type": "boolean"
+        },
+        "evidence_path": {
+          "type": "boolean"
+        },
+        "expert": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

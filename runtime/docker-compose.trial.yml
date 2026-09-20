@@ -1,0 +1,49 @@
+name: human-cos-trial-sbx5
+
+services:
+  trial-postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: human_cos_trial
+      POSTGRES_PASSWORD: human_cos_trial
+      POSTGRES_DB: trial_bootstrap
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U human_cos_trial -d trial_bootstrap"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    networks:
+      - trial-internal
+    volumes:
+      - trial-postgres-data:/var/lib/postgresql/data
+
+  trial-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.trial
+    environment:
+      HUMAN_COS_TRIAL_DATABASE_URL: postgresql://human_cos_trial:human_cos_trial@trial-postgres:5432/trial_bootstrap
+      HUMAN_COS_TRIAL_EXPECTED_BUILD_SHA: ${HUMAN_COS_BUILD_COMMIT_SHA:?exact commit SHA required}
+      HUMAN_COS_TRIAL_NETWORK_ISOLATION: docker-compose-internal-v1
+    depends_on:
+      trial-postgres:
+        condition: service_healthy
+    networks:
+      - trial-internal
+    volumes:
+      - trial-output:/trial
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  trial-internal:
+    internal: true
+
+volumes:
+  trial-postgres-data:
+  trial-output:

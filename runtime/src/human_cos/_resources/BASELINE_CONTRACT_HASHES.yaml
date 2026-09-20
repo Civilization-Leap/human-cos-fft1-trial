@@ -1,0 +1,32 @@
+# V0.1 Frozen Contract Hash Manifest
+#
+# The 10 files below are the immutable engineering contract for Human-COS V0.1.
+# Any byte change to any of these files MUST fail CI (merge-blocking).
+# Semantic change requires: RFC + regression impact review + NEW baseline version,
+# which updates this manifest in the same, reviewed change.
+version: "V0.1"
+frozen_date: "2026-08-18"
+change_policy:
+  semantic_changes_require: "RFC + regression impact review + new baseline version"
+  ordinary_pr: "must NOT alter these files; any byte change fails the Frozen Contract Hash test"
+files:
+  - path: protocols/protocol_registry_v0.1.yaml
+    sha256: "c1473518a19c48c06043c938de86c019408326d76e6f9cc03f648709fd437c89"
+  - path: schemas/audit-event.schema.json
+    sha256: "5ab0b3096a0b86faa5e187ce569a7e61c712247020c5bc801d69bb716670f362"
+  - path: schemas/case.schema.json
+    sha256: "1a443c5ace4c0def254b5029fa868a233e81f4a33dccc75a5db32a64f84a5c02"
+  - path: schemas/context-manifest.schema.json
+    sha256: "84e8dc79709478b62338dc13123247d4c1a467789ca42112924159ed75301d2b"
+  - path: schemas/evidence.schema.json
+    sha256: "6a63295229825d466df5628e3e34dea2dff63dcbfee103382ee8c65f73a1fd46"
+  - path: schemas/model-profile.schema.json
+    sha256: "fd16d5c7a003d99469a2543646fb5df2efff5c90c9f225bae4fa869944153ead"
+  - path: schemas/phase-profile.schema.json
+    sha256: "1b61a3d2e1e09241e2e207fa1b8ff935b8abef11e4183e82dfd906c0b5681f63"
+  - path: schemas/protocol-registry.schema.json
+    sha256: "d7568772915468171d6646e9d0db0abe685c818eaba03cacbe6c932a25bf852c"
+  - path: schemas/run-manifest.schema.json
+    sha256: "8b6001b9ffc19ab732664fb99c8c5dcd74547e7cbb866f38e090e46b2b7b6b73"
+  - path: schemas/visibility.schema.json
+    sha256: "ebcf750575ebf9c24e80441835360928a88d301df5f0317f0e229be22b86cc38"

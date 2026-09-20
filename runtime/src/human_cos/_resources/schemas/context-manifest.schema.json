@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Context Manifest",
+  "type": "object",
+  "required": [
+    "context_manifest_id",
+    "case_id",
+    "run_id",
+    "stage",
+    "role_id",
+    "evidence_ids",
+    "prior_run_ids",
+    "tool_permissions",
+    "protocol_version",
+    "model_id",
+    "prompt_version",
+    "forbidden_scopes"
+  ],
+  "properties": {
+    "context_manifest_id": {
+      "type": "string"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "role_id": {
+      "type": "string"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prior_run_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "protocol_version": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "prompt_version": {
+      "type": "string"
+    },
+    "forbidden_scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "time_boundary": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "hash_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

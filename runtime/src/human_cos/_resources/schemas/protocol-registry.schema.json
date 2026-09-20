@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Protocol Registry",
+  "type": "object",
+  "required": [
+    "registry_version",
+    "status",
+    "change_control",
+    "protocols"
+  ],
+  "properties": {
+    "registry_version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "FROZEN",
+        "SUPERSEDED"
+      ]
+    },
+    "change_control": {
+      "type": "string"
+    },
+    "protocols": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version",
+          "status",
+          "purpose",
+          "merge_blocking_tests"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "DRAFT",
+              "FROZEN",
+              "SUPERSEDED"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "merge_blocking_tests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
