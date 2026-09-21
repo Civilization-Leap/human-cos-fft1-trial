@@ -6,7 +6,7 @@
 
 ## 1. 准备环境
 
-使用自己信任的专用 Linux Docker 主机。已验证环境为 Ubuntu 24.04、Python 3.12、Docker/Compose v2；其它系统不应当作已经验证。最低需要 Python 3.10+、可工作的 Docker daemon、Compose v2，以及镜像与依赖下载网络。
+使用自己信任的专用 Linux Docker 主机。项目方受控验证环境为 Ubuntu 24.04、Python 3.12、Docker/Compose v2；这不是外部独立验证，其它系统也不应当作已经验证。最低需要 Python 3.10+、可工作的 Docker daemon、Compose v2，以及镜像与依赖下载网络。
 
 ```sh
 python3 --version
@@ -18,7 +18,7 @@ docker compose version
 
 ## 2. 下载并核对
 
-打开 [Preview 1 发布页](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.1)，下载附件 **FFT1-distribution.zip** 和 **SHA256SUMS**。不要把 GitHub 自动生成的 Source code ZIP 当作同一文件计算哈希。
+打开 [Preview 2 发布页](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.2)，下载附件 **FFT1-distribution.zip** 和 **SHA256SUMS**。不要把 GitHub 自动生成的 Source code ZIP 当作同一文件计算哈希。
 
 在两个附件所在目录运行：
 
@@ -28,7 +28,7 @@ sha256sum -c SHA256SUMS
 
 应显示 `FFT1-distribution.zip: OK`。发布包的 SHA-256 为：
 
-`6eb838535e6cbce3ce4e2546aa916b5be8aaa826a9fd824564c6174998bf5d48`
+`0efde6884170bbd881a119b6e90b19225959c01693b01d44afc609b930110310`
 
 不一致就停止，不要运行。解压到新的空目录，进入包含 `run_trial.py` 的目录。包内保留发布前的“候选”字样，是为了不改变已验证 ZIP；公开状态以发布页为准。
 

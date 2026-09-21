@@ -30,19 +30,19 @@ Use a nonexistent output directory on a trusted dedicated Docker host. Operator 
 
 The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. The project's AI-operated harness checks 12 authorized transitions, 7 rejection probes, PostgreSQL persistence/readback, evidence and cleanup.
 
-The historical preview.1 had project-operated Docker runs, but public review found verifier false-positive paths. This preview.2 candidate hardens those checks and passes its local unit, archive-integrity and mutation tests; it has **not yet been rerun on a clean Docker/Compose host**. It is not independently validated. No real-model or real-case effectiveness claim.
+The historical preview.1 had project-operated Docker runs, but public review found verifier false-positive paths. Preview.2 hardens those checks and has passed local unit, archive-integrity and mutation tests plus a project-controlled clean-host Docker/Compose run and evidence intake. This is **not independent external validation**. No real-model or real-case effectiveness claim is made. See the sanitized [validation record](VALIDATION.md).
 
 N-3 and two same-UID output-directory acquisition races remain OPEN. Do not run with a concurrent output mutator. Live provider NOT_RUN; REAL_CASE_EFFECTIVENESS NOT_DEMONSTRATED. No Final Synthesis, Final Claim, Controller D, Human Seal, Publication Authority, Reality Execution, S8 FULL or S9+ authority is enabled. Support boundaries do not add license restrictions.
 
-Current public review findings are tracked in [Issues](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues), including [a REVIEW_ONLY verifier false-positive path](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/1). Treat the preview as testable and falsifiable, not validated.
+The public Issues record includes the review findings that motivated preview.2. Treat this preview as testable and falsifiable, not independently validated.
 
-## Source and integrity (preview.2 candidate)
+## Source and integrity (preview.2)
 
 The candidate distribution ZIP SHA-256 is:
 
 `0efde6884170bbd881a119b6e90b19225959c01693b01d44afc609b930110310`
 
-This hash identifies an **unreleased, unvalidated preview.2 candidate**. Do not substitute its local checks for the pending clean-host Docker rerun. The historical preview.1 release remains available for audit, with its known verifier findings tracked in Issues.
+This hash identifies the exact preview.2 distribution that passed the project-controlled Docker run and evidence intake. It does not establish independent reproduction or public-trial validation. The historical preview.1 release remains available for audit, with its verifier findings retained in Issues.
 
 - Pinned public source snapshot: `ca93213174544f2ce5c3f862564a6cd5a3f0386f`.
 - Pinned runtime subtree: `a19c96d76072a1bbf7e94bba03b372cb963c3593`.

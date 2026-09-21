@@ -24,7 +24,7 @@ N-3 和两项同 UID 目录获取竞态仍为 OPEN。请使用可信专用主机
 
 ## 参与入口
 
-- [下载固定预览版与校验值](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.1)
+- [下载固定预览版与校验值](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.2)
 - [中文快速上手](https://github.com/Civilization-Leap/human-cos-fft1-trial/blob/main/QUICKSTART_ZH.md)
 - [提交测试反馈](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)
 

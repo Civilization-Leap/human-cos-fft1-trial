@@ -20,7 +20,7 @@ This is not evidence of live-model reasoning quality, real-case effectiveness, i
 
 ## Start here
 
-- [Pinned release and checksums](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.1)
+- [Pinned release and checksums](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.2)
 - [Repository and launch instructions](https://github.com/Civilization-Leap/human-cos-fft1-trial)
 - [Structured feedback](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)
 
