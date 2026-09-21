@@ -57,6 +57,12 @@ Without assuming undocumented project knowledge, identify:
 
 Code reading without an actual Docker run is valid for this track, but must be labelled `REVIEW_ONLY`.
 
+## Interpret verifier results correctly
+
+Read the [preview.2 verification boundaries](README.md#verification-boundaries-preview2-clarification) before interpreting a pass. Detached checks establish internal consistency, not execution provenance or proof that rejection probes ran. Layer 1 allows supersets of 11 required tables; Layer 2 requires the exact 26-table policy inventory. S8 has explicit terminal preimage reconstruction in Layer 2; S5/S6/S7 do not have equivalent explicit reconstruction. Production readback covers the container-side copy, not the exported host copy.
+
+When using synthetic fixtures, separately report Layer 1 checks, the Layer 2 inventory gate, full Layer 2 semantic comparison and the official Docker flow. Executing an inventory gate does not establish execution of the full comparator or runner. Label code-derived paths as inferences. Coordinated changes to both exported runs test a different trust assumption from one-sided mutations; disclose any required host tampering. A standalone verifier accepting self-consistent fabricated evidence does not, by itself, establish an end-to-end false positive within the published trusted-host model.
+
 ## Required disclosure
 
 State all of the following:
