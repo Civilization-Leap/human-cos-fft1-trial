@@ -17,8 +17,8 @@ contain host paths and descriptions. No upload happens automatically.
 Two same-UID directory acquisition races and N-3 remain OPEN; do not run with a
 concurrent output mutator. Live provider NOT_RUN; real-case effectiveness NOT_DEMONSTRATED.
 
-Only selected original blobs from the declared new source commit are included;
-no Git history or old private evidence is present. Runtime modules are byte-identical
-to the earlier candidate; licensing/build metadata and documentation have a new identity.
-The inventory does not reconstruct the complete tree. Obtain the outer archive hash
-through a trusted publisher channel: an in-archive manifest is not a signature.
+Only selected runtime blobs from the pinned public candidate snapshot are included;
+no private Git history or old private evidence is present. This preview.2 candidate
+hardens result semantics and evidence binding relative to preview.1. The inventory does
+not reconstruct the complete public repository. Obtain the outer archive hash through a
+trusted publisher channel: an in-archive manifest is not a signature.

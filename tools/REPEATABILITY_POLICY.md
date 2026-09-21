@@ -1,6 +1,6 @@
 # FFT-1B 有界重复性规则（仅固定 Mock 候选）
 
-适用源码：bc324b68814dddb388e3e6cebab0d31a38ef6817；不修改运行时。
+适用公开候选源码快照：ca93213174544f2ce5c3f862564a6cd5a3f0386f。
 依据 Issue #114 已允许的 “replay/determinism or explicitly bounded nondeterminism”。
 
 原始结果、原始哈希、完整数据库快照、逐字差异一律保留。此前失败运行仍为失败，不修改历史结论。新规则通过时只表示有界重复性通过，仍待候选集中审查，不表示逐字确定性、外部独立审查或公开测试就绪。

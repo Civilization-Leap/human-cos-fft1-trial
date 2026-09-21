@@ -18,37 +18,37 @@ AI / agent 可直接使用 [公开制品测试任务书](AGENT_TEST_TASK.md)，�
 
 ## 下载与运行 / Download and run
 
-Download [FFT1-distribution.zip](https://github.com/Civilization-Leap/human-cos-fft1-trial/raw/refs/heads/main/FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.
+Download [FFT1-distribution.zip](FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.
 
 ```sh
 python3 run_trial.py --output ../FFT1-run-01 --host-note 'actual host and interventions'
 ```
 
-Use a nonexistent output directory on a trusted dedicated Docker host. [中文操作说明](tools/README_ZH.md) describes evidence, results and cleanup. A clone of this public repository also supports the same launcher command from its root.
+Use a nonexistent output directory on a trusted dedicated Docker host. Operator guides: [中文](tools/README_ZH.md) · [English](tools/README_EN.md). They describe evidence, results and cleanup. A clone of this public repository also supports the same launcher command from its root.
 
 ## 本次公开范围 / Scope
 
 The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. The project's AI-operated harness checks 12 authorized transitions, 7 rejection probes, PostgreSQL persistence/readback, evidence and cleanup.
 
-Before publication: 49 wrapper tests; exact-candidate CI; two real Docker executions; local recomputation of retained evidence and bounded repeatability comparison passed. This is AI-operated engineering verification on a fresh GitHub VM, not independent human or external-organization validation. No real-model or real-case effectiveness claim.
+The historical preview.1 had project-operated Docker runs, but public review found verifier false-positive paths. Preview.2 hardens those checks and has passed local unit, archive-integrity and mutation tests plus a project-controlled clean-host Docker/Compose run and evidence intake. This is **not independent external validation**. No real-model or real-case effectiveness claim is made. See the sanitized [validation record](VALIDATION.md).
 
 N-3 and two same-UID output-directory acquisition races remain OPEN. Do not run with a concurrent output mutator. Live provider NOT_RUN; REAL_CASE_EFFECTIVENESS NOT_DEMONSTRATED. No Final Synthesis, Final Claim, Controller D, Human Seal, Publication Authority, Reality Execution, S8 FULL or S9+ authority is enabled. Support boundaries do not add license restrictions.
 
-Current public review findings are tracked in [Issues](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues), including [a REVIEW_ONLY verifier false-positive path](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/1). Treat the preview as testable and falsifiable, not validated.
+The public Issues record includes the review findings that motivated preview.2. Treat this preview as testable and falsifiable, not independently validated.
 
-## Source and integrity
+## Source and integrity (preview.2)
 
-The tested ZIP is published unchanged; its SHA-256 is:
+The candidate distribution ZIP SHA-256 is:
 
-`6eb838535e6cbce3ce4e2546aa916b5be8aaa826a9fd824564c6174998bf5d48`
+`0efde6884170bbd881a119b6e90b19225959c01693b01d44afc609b930110310`
 
-The ZIP retains its prepublication candidate wording. This repository and its release record document the subsequent owner-authorized public publication.
+This hash identifies the exact preview.2 distribution that passed the project-controlled Docker run and evidence intake. It does not establish independent reproduction or public-trial validation. The historical preview.1 release remains available for audit, with its verifier findings retained in Issues.
 
-- Runtime source identity: `bc324b68814dddb388e3e6cebab0d31a38ef6817`.
-- Packaging/verification identity: `4754709a5de22e6ab740fde8febf1efd7b5c43e5`.
+- Pinned public source snapshot: `ca93213174544f2ce5c3f862564a6cd5a3f0386f`.
+- Pinned runtime subtree: `a19c96d76072a1bbf7e94bba03b372cb963c3593`.
 - [runtime/](runtime/) exposes the same 140 selected files as `runtime-source.zip` for browsing. The launcher always uses the verified bundled ZIP.
-- [PACKAGE_SHA256.json](PACKAGE_SHA256.json) covers the original distribution members, not these additional repository presentation files.
-- [Source inventory](tools/source_inventory.json) pins the selected original blobs. An in-package hash manifest is not a publisher signature.
+- [PACKAGE_SHA256.json](PACKAGE_SHA256.json) covers the candidate distribution members, not additional repository presentation files.
+- [Source inventory](tools/source_inventory.json) pins the selected public runtime blobs. An in-package hash manifest is not a publisher signature.
 
 No original private Git history, raw host evidence, model credentials, dependency wheels or container images are included.
 

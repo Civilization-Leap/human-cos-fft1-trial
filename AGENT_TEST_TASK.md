@@ -6,9 +6,10 @@ This task is for an AI system or autonomous agent starting from the public relea
 
 ## Fixed target
 
-- Release: `v0.1.0-fft1-preview.1`
-- Distribution SHA-256: `6eb838535e6cbce3ce4e2546aa916b5be8aaa826a9fd824564c6174998bf5d48`
+- Release: `v0.1.0-fft1-preview.2`
+- Distribution SHA-256: `0efde6884170bbd881a119b6e90b19225959c01693b01d44afc609b930110310`
 - Public repository: <https://github.com/Civilization-Leap/human-cos-fft1-trial>
+- English operator guide: <https://github.com/Civilization-Leap/human-cos-fft1-trial/blob/main/tools/README_EN.md>
 - Feedback form: <https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml>
 
 Do not request private repository access, private commit history, credentials or raw retained evidence.

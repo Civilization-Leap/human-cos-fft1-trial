@@ -1,6 +1,6 @@
 {
   "format": "fft1b-bounded-clock-policy-v1",
-  "candidate_sha": "bc324b68814dddb388e3e6cebab0d31a38ef6817",
+  "candidate_sha": "ca93213174544f2ce5c3f862564a6cd5a3f0386f",
   "storage_created_at_tables": [
     "human_cos_audit_event",
     "human_cos_case_revision",
