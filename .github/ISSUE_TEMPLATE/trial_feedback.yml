@@ -11,7 +11,8 @@ body:
     id: version
     attributes:
       label: "版本与包 SHA-256 / Version and package hash"
-      placeholder: "v0.1.0-fft1-preview.2；填写实际核对的 ZIP 哈希"
+      placeholder: "实际测试版本／源码提交；未下载可写 NOT_DOWNLOADED，未校验可写 NOT_VERIFIED"
+      description: "只读测试可填实际查看的文件链接或提交；不要把公布的哈希冒称为自己计算的结果。"
     validations:
       required: true
   - type: dropdown
@@ -64,7 +65,7 @@ body:
     id: result
     attributes:
       label: "观察结果 / Observed result"
-      description: "退出码；physical_reproduction、cleanup；预期与实际差异。如无报告请写明。"
+      description: "实际执行才填写退出码、physical_reproduction和cleanup；只读或未启动写NOT_RUN，并说明看过的材料、具体发现或未解决问题。"
     validations:
       required: true
   - type: textarea
