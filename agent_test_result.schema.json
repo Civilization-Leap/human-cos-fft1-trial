@@ -1,19 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:human-cos:fft1:agent-test-result:1.1",
+  "$id": "urn:human-cos:fft1:agent-test-result:1.2",
   "title": "Human-COS FFT-1 public-artifact AI/agent test result",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "target", "agent", "access", "test", "outcome", "claims"],
   "properties": {
-    "schema_version": { "const": "1.1" },
+    "schema_version": { "const": "1.2" },
     "target": {
       "type": "object",
       "additionalProperties": false,
       "required": ["release", "distribution_sha256", "source", "public_source_commit", "deviations"],
       "properties": {
-        "release": { "const": "v0.1.0-fft1-preview.1" },
-        "distribution_sha256": { "const": "6eb838535e6cbce3ce4e2546aa916b5be8aaa826a9fd824564c6174998bf5d48" },
+        "release": { "const": "v0.1.0-fft1-preview.2" },
+        "distribution_sha256": { "const": "0efde6884170bbd881a119b6e90b19225959c01693b01d44afc609b930110310" },
         "source": { "enum": ["PINNED_RELEASE", "PUBLIC_REPOSITORY", "OTHER"] },
         "public_source_commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
         "deviations": { "type": "array", "items": { "type": "string" } }
@@ -34,97 +34,3 @@
     "access": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["shell", "network", "docker", "repository_write", "human_assistance"],
-      "properties": {
-        "shell": { "type": "boolean" },
-        "network": { "type": "boolean" },
-        "docker": { "type": "boolean" },
-        "repository_write": { "type": "boolean" },
-        "human_assistance": { "type": "string" }
-      }
-    },
-    "test": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["track", "execution_class", "environment", "interventions"],
-      "properties": {
-        "track": { "enum": ["A_EXECUTION_ATTEMPT", "B_FALSE_POSITIVE_CHALLENGE", "C_FIRST_USE_REVIEW"] },
-        "execution_class": { "enum": ["EXECUTED", "ENVIRONMENT_BLOCKED", "REVIEW_ONLY"] },
-        "environment": { "type": "string", "minLength": 1 },
-        "interventions": { "type": "array", "items": { "type": "string" } }
-      }
-    },
-    "outcome": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["status", "summary", "minimal_reproducer", "exit_code", "reported_physical_reproduction", "reported_cleanup", "finding_category"],
-      "properties": {
-        "status": { "enum": ["PASS", "FAIL", "BLOCKED", "FINDING", "UNCERTAIN"] },
-        "summary": { "type": "string", "minLength": 1 },
-        "minimal_reproducer": { "type": "array", "items": { "type": "string" } },
-        "exit_code": { "type": ["integer", "null"] },
-        "reported_physical_reproduction": {
-          "oneOf": [
-            { "type": "null" },
-            { "enum": ["NOT_RUN", "TWO_RUNS_VERIFIED_AWAITING_REVIEW", "TWO_RUNS_BOUNDED_EQUIVALENCE_AWAITING_REVIEW", "TWO_RUNS_EXECUTED_DIFFERENCES_REQUIRE_REVIEW", "BLOCKED_OR_FAILED_NOT_ACCEPTED"] }
-          ]
-        },
-        "reported_cleanup": {
-          "oneOf": [
-            { "type": "null" },
-            { "type": "string", "pattern": "^(NOT_RUN|OWNED_CONTAINERS_NETWORKS_VOLUMES_ABSENT|RETAINED_FOR_DIAGNOSIS; export/readback did not fully pass|FAILED: .+)$" }
-          ]
-        },
-        "finding_category": { "enum": ["NONE", "REPRODUCIBILITY", "FALSE_POSITIVE", "ENVIRONMENT", "BOUNDARY", "MISSING_TEST", "DOCUMENTATION", "OTHER"] }
-      }
-    },
-    "claims": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["ai_agent_used", "organizational_independence", "independent_human_validation", "live_model_validated", "real_case_effectiveness", "complete_human_cos_validated", "broader_theory_validated", "every_safety_boundary_validated"],
-      "properties": {
-        "ai_agent_used": { "const": true },
-        "organizational_independence": { "enum": ["PROJECT_CONTROLLED", "SELF_REPORTED_EXTERNAL", "UNKNOWN"] },
-        "independent_human_validation": { "const": false },
-        "live_model_validated": { "const": false },
-        "real_case_effectiveness": { "const": false },
-        "complete_human_cos_validated": { "const": false },
-        "broader_theory_validated": { "const": false },
-        "every_safety_boundary_validated": { "const": false }
-      }
-    }
-  },
-  "allOf": [
-    {
-      "if": { "properties": { "test": { "properties": { "execution_class": { "const": "REVIEW_ONLY" } }, "required": ["execution_class"] } } },
-      "then": {
-        "properties": {
-          "outcome": {
-            "properties": {
-              "status": { "enum": ["FINDING", "UNCERTAIN"] },
-              "exit_code": { "const": null },
-              "reported_physical_reproduction": { "const": null },
-              "reported_cleanup": { "const": null }
-            }
-          }
-        }
-      }
-    },
-    {
-      "if": { "properties": { "outcome": { "properties": { "status": { "const": "PASS" } }, "required": ["status"] } } },
-      "then": {
-        "properties": {
-          "target": { "properties": { "source": { "const": "PINNED_RELEASE" }, "deviations": { "maxItems": 0 } } },
-          "test": { "properties": { "execution_class": { "const": "EXECUTED" } } },
-          "outcome": {
-            "properties": {
-              "exit_code": { "const": 0 },
-              "reported_physical_reproduction": { "enum": ["TWO_RUNS_VERIFIED_AWAITING_REVIEW", "TWO_RUNS_BOUNDED_EQUIVALENCE_AWAITING_REVIEW"] },
-              "reported_cleanup": { "const": "OWNED_CONTAINERS_NETWORKS_VOLUMES_ABSENT" }
-            }
-          }
-        }
-      }
-    }
-  ]
-}
