@@ -4,6 +4,12 @@
 
 A reproducible, fixed Mock S5→S8 narrow trial of Human-COS. This public snapshot includes the verified original source, Docker runner, evidence verification tools and Apache-2.0 documentation.
 
+**Test question:** Can you reproduce the fixed Mock S5→S8 narrow trial, and find a case where it reports success incorrectly?
+
+Test installation, the fixed mock pipeline, rejection checks, evidence verification and cleanup. This is **not** a complete Human-COS implementation, real-world decision authority, live-model validation, or evidence of effectiveness in real deployments. It does not validate the project's broader theory or every safety boundary.
+
+A failure, false-positive success, reproducibility problem, unclear boundary or missing test case is more useful than a successful run. [Report a sanitized finding](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml); do not upload raw evidence or credentials. The run command is directly below.
+
 **首次测试：[中文快速上手](QUICKSTART_ZH.md) · [提交测试反馈](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)**
 
 测试邀请 / Call for testing: [中文](TEST_INVITATION_ZH.md) · [English](TEST_INVITATION_EN.md)。包含可直接转发的简短版本 / Includes short versions for sharing.
