@@ -4,6 +4,18 @@ Author: 子君赋. Produced by Civilization Leap Research Group. Licensed under 
 
 This task is for an AI system or autonomous agent starting from the public release only. The target is the **fixed Mock S5→S8 narrow FFT-1 preview**, not the complete Human-COS system.
 
+## Project purpose: read before testing
+
+Human-COS is intended to help make the consequences of goals and actions visible before they become irreversible: assumptions, causal links, affected parties, effects across time, dissent, alternatives and opportunities for correction. The broader research includes goals proposed by humans or AI and consequences arising from their interactions. This is a design intention, not an assertion that the current preview implements or validates all of it.
+
+The tool is not a final authority over everyone's purposes. More refusals, more conservative choices, agreement with the project, or a higher internal score do not by themselves show improvement. A useful test can reveal missing consequences, unsupported claims, false success, or no benefit. You may question the project's assumptions and this test design.
+
+**当前测试者应理解：**项目希望在人或AI依据局部判断行动之前，让被遗漏的主体、因果后果、关键假设及纠错路径显现出来。理解这一目标不要求赞同项目，也不要求得出支持项目的结论。当前公开能力仍只有 fixed Mock S5→S8 narrow；独立的方法提示或封闭模拟不是该软件的完整应用验证。
+
+Before execution or review, include a short account in your human-readable report of what the project seeks to improve, what this particular test can establish, and what finding would challenge its usefulness or alignment with its stated purpose. This is a check for task ambiguity, not an agreement test or an additional qualification exam. Do not add fields to the existing JSON schema for this account.
+
+In comparative studies, give all conditions the same project-purpose explanation; vary only the method or tool under test. Keep future scenario evidence and specific expected answers separate until their designated stage. Reading prescribed public instructions during the current test is part of the task; disclose earlier project involvement separately and retain the version of materials read. Do not relabel past reports or erase prior exposure. Historical release instructions may lack this clarification; the immutable release ZIP and checksum are unchanged.
+
 ## Fixed target
 
 - Release: `v0.1.0-fft1-preview.2`
