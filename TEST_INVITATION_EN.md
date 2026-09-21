@@ -4,6 +4,8 @@ Author: 子君赋. Produced by Civilization Leap Research Group. This document i
 
 Human-COS FFT-1 is now available as a public trial preview. We invite developers and researchers working on Python, Docker, AI evaluation or reproducible systems to test a concrete question: does this fixed analysis pipeline actually perform the transitions, rejections, evidence readback and cleanup that it reports?
 
+**Lowest-cost entry:** if you do not already have a suitable Docker host, take the [15-minute read-only route](AGENT_TEST_TASK.md#low-cost-first-contribution). Compare one claim with one public source path; submit one concrete discrepancy or unresolved question as `REVIEW_ONLY`. No host rental or model API purchase is requested. A limited review with no finding is not validation.
+
 ## Pick one contribution
 
 - **Reproduce a run.** Download the pinned release and invoke its launcher on a trusted dedicated Docker host. One invocation runs the chain twice. Success, failure and inability to start are all useful findings.
