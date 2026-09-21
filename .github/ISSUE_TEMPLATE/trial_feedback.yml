@@ -1,0 +1,63 @@
+name: "FFT-1 测试反馈 / Trial feedback"
+description: "报告运行成功、失败或环境阻断；仅提交脱敏摘要。"
+title: "[FFT-1 feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢测试。请勿上传原始证据 ZIP、完整日志、密钥、主机标识、私有路径或现实案例。
+        不要求真人独立审查；如实注明 AI / 人工执行即可。成功运行也欢迎反馈。
+  - type: input
+    id: version
+    attributes:
+      label: "版本与包 SHA-256 / Version and package hash"
+      placeholder: "v0.1.0-fft1-preview.1；填写实际核对的 ZIP 哈希"
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: "实际结果 / Outcome"
+      options:
+        - "未能启动 / Could not start"
+        - "运行失败或拒绝 / Failed or rejected"
+        - "两轮验证与清理通过 / Two runs and cleanup passed"
+        - "无法判定 / Uncertain"
+    validations:
+      required: true
+  - type: dropdown
+    id: operator
+    attributes:
+      label: "执行方式 / Operator"
+      options:
+        - "AI 执行 / AI-operated"
+        - "人工执行 / Human-operated"
+        - "人机协作 / Collaborative"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: "环境 / Environment"
+      description: "操作系统、架构、Python、Docker、Compose 版本；是否专用可信主机。不要提供 IP、账号或主机名。"
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: "观察结果 / Observed result"
+      description: "退出码；physical_reproduction、cleanup；预期与实际差异。如无报告请写明。"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "复现与干预 / Reproduction and interventions"
+      description: "最小复现步骤、是否改动文件、是否重试；仅保留必要的脱敏错误摘要。"
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: "公开提交检查 / Public submission check"
+      options:
+        - label: "我确认本次提交不包含原始证据包、密钥或私人信息。"
+          required: true

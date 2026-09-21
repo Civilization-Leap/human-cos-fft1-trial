@@ -4,6 +4,8 @@
 
 A reproducible, fixed Mock S5→S8 narrow trial of Human-COS. This public snapshot includes the verified original source, Docker runner, evidence verification tools and Apache-2.0 documentation.
 
+**首次测试：[中文快速上手](QUICKSTART_ZH.md) · [提交测试反馈](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)**
+
 ## 下载与运行 / Download and run
 
 Download [FFT1-distribution.zip](https://github.com/Civilization-Leap/human-cos-fft1-trial/raw/refs/heads/main/FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.
