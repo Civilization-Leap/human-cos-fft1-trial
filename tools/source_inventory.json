@@ -1,7 +1,7 @@
 {
   "format": "fft1-source-selection-v1",
-  "commit": "bc324b68814dddb388e3e6cebab0d31a38ef6817",
-  "tree": "241ae0a97d642792ef40176268293b76194b7d3c",
+  "commit": "ca93213174544f2ce5c3f862564a6cd5a3f0386f",
+  "tree": "a19c96d76072a1bbf7e94bba03b372cb963c3593",
   "files": [
     {
       "path": "Dockerfile.trial",
@@ -672,8 +672,8 @@
     {
       "path": "src/human_cos/trial/full_function.py",
       "mode": "100644",
-      "sha": "edccce461bf4fd0e67db31aa802022e189ee2058",
-      "size": 28874
+      "sha": "8c69900fdc54607ad43f093e885f29e571c1c758",
+      "size": 31732
     },
     {
       "path": "src/human_cos/trial/integrated_chain.py",

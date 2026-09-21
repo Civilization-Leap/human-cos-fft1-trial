@@ -134,11 +134,12 @@ class VerifierHardeningTests(unittest.TestCase):
             "stage_terminal_hashes": {"S8_EVAL_NARROW": s8_hash},
         }
         bogus_receipt = {"tables_exercised": bogus_tables, "s8_terminal_hash": s8_hash}
-        bogus_checkpoint = {"tables_exercised": bogus_tables, "s8_terminal_hash": s8_hash}
+        bogus_checkpoint = {
+            "tables_exercised": bogus_tables,
+            "s8_terminal_hash": s8_hash,
+        }
         bogus_snapshot = {
-            "tables": [
-                {"table": "bogus_table", "row_count": 1, "rows": [{"id": 1}]}
-            ]
+            "tables": [{"table": "bogus_table", "row_count": 1, "rows": [{"id": 1}]}]
         }
         with self.assertRaisesRegex(ValueError, "table binding"):
             verify_cross_bindings(
