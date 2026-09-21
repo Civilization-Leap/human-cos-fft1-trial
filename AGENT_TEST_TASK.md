@@ -41,6 +41,8 @@ Execute the release, then determine whether a reported pass is supported by the 
 - cleanup as an observed outcome;
 - the hard stop at `ADVERSARIAL_REVIEW`.
 
+For bounded-equivalence testing, make at least one mutation that remains just inside the published normalization boundary and one that crosses just outside it. A within-boundary pass is expected; an outside-boundary pass is a finding.
+
 Report any path where missing, inconsistent or unverified evidence can still produce success. Do not publish raw evidence ZIPs or full logs.
 
 ### C. First-use and test-design review
@@ -67,11 +69,17 @@ State all of the following:
 - whether the agent had access to prior project discussions or expected answers;
 - execution class: `EXECUTED`, `ENVIRONMENT_BLOCKED` or `REVIEW_ONLY`.
 
+Track A counts as a zero-context attempt only when `prior_project_context` is false. A tester with prior project discussion, implementation, internal-material or expected-answer exposure may still contribute to Track B or C, but must not be counted as Track A evidence.
+
+Treat background, operator relationship, independence and human-assistance disclosures as self-reported unless separately verified. Treat the pinned release, distribution hash, exit code, ordered trace and artifact hashes as verifiable fields when the underlying public artifact or sanitized evidence is available.
+
 Do not call an AI-operated run independent human validation. Do not call a review-only result a reproduction.
 
 ## Result format
 
 Return a JSON document conforming to [`agent_test_result.schema.json`](agent_test_result.schema.json), plus a short human-readable summary. Prepare a sanitized finding for the GitHub feedback form; submit it only with the controlling operator's authorization.
+
+A reported false-positive is not confirmed until its minimal reproducer is independently reproduced or the relevant evidence is reviewed. Once confirmed, open a public issue, mark the affected release claim as disputed or withdrawn, and keep it downgraded until a fix and retest are published.
 
 The most valuable outcome is a reproducible failure, false-positive success, unclear boundary or missing test. A clean run is useful but does not validate live models, real cases, every safety boundary, the complete Human-COS system or any broader theory.
 
