@@ -24,7 +24,7 @@ Download [FFT1-distribution.zip](https://github.com/Civilization-Leap/human-cos-
 python3 run_trial.py --output ../FFT1-run-01 --host-note 'actual host and interventions'
 ```
 
-Use a nonexistent output directory on a trusted dedicated Docker host. [中文操作说明](tools/README_ZH.md) describes evidence, results and cleanup. A clone of this public repository also supports the same launcher command from its root.
+Use a nonexistent output directory on a trusted dedicated Docker host. Operator guides: [中文](tools/README_ZH.md) · [English](tools/README_EN.md). They describe evidence, results and cleanup. A clone of this public repository also supports the same launcher command from its root.
 
 ## 本次公开范围 / Scope
 

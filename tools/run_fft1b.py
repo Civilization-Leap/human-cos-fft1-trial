@@ -9,7 +9,6 @@ import hashlib
 import io
 import json
 import os
-from pathlib import Path
 import platform
 import shutil
 import subprocess
@@ -17,13 +16,21 @@ import sys
 import tarfile
 import uuid
 import zipfile
+from pathlib import Path
 
-from verify_fft1b import SHA, TREE, differences, require, verify_directory
 from compare_repeat import compare_directories
+from verify_fft1b import SHA, TREE, differences, require, verify_directory
 
 
 def save(path, obj):
     Path(path).write_text(json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def image_identity(commands, reference):
+    template = '{"id":"{{.Id}}","repo_digests":{{json .RepoDigests}}}'
+    return json.loads(commands.run(
+        ["docker", "image", "inspect", "--format", template, reference]
+    ).stdout)
 
 
 class Commands:
@@ -37,7 +44,9 @@ class Commands:
     def run(self, args, *, check=True, cwd=None):
         self.counter += 1
         print(f"[{self.counter}] {args[0]} {args[1] if len(args) > 1 else ''}", flush=True)
-        proc = subprocess.run(args, cwd=cwd, env=self.env, capture_output=True, text=True)
+        proc = subprocess.run(
+            args, cwd=cwd, env=self.env, capture_output=True, text=True, check=False
+        )
         save(self.root / f"command-{self.counter:03}.json", {
             "argv": args, "returncode": proc.returncode,
             "stdout": proc.stdout, "stderr": proc.stderr,
@@ -90,12 +99,25 @@ p = pathlib.Path('/trial/fft1b-RUN')
 d = json.loads((p/'full_function_trial_result.json').read_text())
 FullFunctionTrialResult(d, p).assert_integrity()
 _verify_package(p, json.loads((p/'evidence_manifest.json').read_text()))
+evidence = {}
 for filename, cls in [('application_chain_receipt.json', InstalledApplicationChainReceipt),
                       ('application_chain_checkpoint.json', InstalledApplicationChainCheckpoint)]:
  v = json.loads((p/'evidence_package'/filename).read_text())
+ evidence[filename] = v
+ typed = dict(v)
  for key in ('migration_names', 'tables_exercised', 'stage_trace'):
-  if key in v: v[key] = tuple(v[key])
- cls(**v).assert_integrity()
+  if key in typed: typed[key] = tuple(typed[key])
+ cls(**typed).assert_integrity()
+snapshot = json.loads((p/'evidence_package'/'persistence_snapshot.json').read_text())
+tables = d['persistence']['tables_exercised']
+snapshot_tables = [item['table'] for item in snapshot['tables']]
+receipt = evidence['application_chain_receipt.json']
+checkpoint = evidence['application_chain_checkpoint.json']
+if not (tables and tables == receipt['tables_exercised'] == checkpoint['tables_exercised'] == snapshot_tables):
+ raise ValueError('persistence table binding mismatch')
+if not (d['s8_narrow_sidecars']['terminal_hash'] == d['stage_terminal_hashes']['S8_EVAL_NARROW']
+        == receipt['s8_terminal_hash'] == checkpoint['s8_terminal_hash']):
+ raise ValueError('S8 sidecar terminal binding mismatch')
 with psycopg.connect(os.environ['HUMAN_COS_TRIAL_DATABASE_URL']) as c:
  assert_installed_application_resources_clean(c)
 print('PRODUCTION_EVIDENCE_READBACK_AND_DATABASE_CLEAN=PASS')
@@ -134,6 +156,9 @@ def main():
     cleanup_safe = False
     report = {
         "format": "fft1b-independent-host-harness-v1", "source_commit": SHA, "source_tree": TREE,
+        "claim_scope": "LOCAL_FIXED_MOCK_S5_S8_NARROW_HARNESS_EXECUTION_ONLY",
+        "independence_verified": False,
+        "environment_reproducibility": "UPSTREAM_TAGS_RESOLVED_AT_RUN_AND_RECORDED_NOT_DIGEST_PINNED",
         "physical_reproduction": "NOT_RUN", "candidate_review": "NOT_RUN",
         "public_test_ready": False, "n3_status": "OPEN", "sbx7_frozen": False,
         "real_case_effectiveness": "NOT_DEMONSTRATED", "live_provider": "NOT_RUN",
@@ -160,7 +185,10 @@ def main():
             from source_bundle import export_bundle
             export_bundle(args.source_bundle.resolve(), source)
         save(root / "compose.override.json", {"services": {
-            "trial-runner": {"command": ["full-function-trial", "/trial/fft1b-1"]}}})
+            "trial-runner": {
+                "image": "human-cos-fft1-trial-runner:" + project,
+                "command": ["full-function-trial", "/trial/fft1b-1"],
+            }}})
         compose = ["docker", "compose", "--project-directory", str(source),
                    "-p", project, "-f", str(source / "docker-compose.trial.yml"),
                    "-f", str(root / "compose.override.json")]
@@ -172,8 +200,14 @@ def main():
         require(not any(s.get("ports") or s.get("privileged") for s in config["services"].values()),
                 "unexpected exposed ports/privilege")
         commands.run(compose + ["build", "--pull", "trial-runner"])
+        report["resolved_images"] = {
+            "trial-runner": image_identity(commands, runner["image"]),
+        }
         resources_started = True
         commands.run(compose + ["up", "-d", "--wait", "trial-postgres"])
+        report["resolved_images"]["trial-postgres"] = image_identity(
+            commands, config["services"]["trial-postgres"]["image"]
+        )
         identity = json.loads(commands.run(compose + ["run", "--rm", "--no-deps", "-T",
             "--entrypoint", "python", "trial-runner", "-c", IDENTITY]).stdout)
         require(identity["build_commit"] == SHA and "/site-packages/" in identity["module_file"],

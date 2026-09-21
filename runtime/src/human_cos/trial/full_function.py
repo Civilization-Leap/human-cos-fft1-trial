@@ -60,10 +60,66 @@ _RESULT_NAME = "full_function_trial_result.json"
 _OWNER_NAME = ".human-cos-fft1a-owner"
 _OWNER_VALUE = "human-cos-runtime:FFT-1A:v1\n"
 _PROBE_TIME = datetime(2026, 9, 15, tzinfo=timezone.utc)
+_NEGATIVE_SEMANTICS = {
+    "challenger_block": ("BLOCK", "REJECTED", "Challenger downstream-clearance gate"),
+    "capability_gap": ("CAPABILITY_GAP", "OPEN", "qualified Domain route required"),
+    "evidence_mismatch_or_forgery": (
+        "REJECT",
+        "REJECTED",
+        "S8 exact evaluator task/packet evidence binding",
+    ),
+    "invalid_evaluator_or_independence": ("REJECT", "REJECTED", "Evaluator qualification gate"),
+    "final_synthesis_attempt": (
+        "AUTHORIZATION_REQUIRED",
+        "AUTHORIZATION_REQUIRED",
+        "ADVERSARIAL_REVIEW -> FINAL_SYNTHESIS authorization gate",
+    ),
+    "reality_execution_attempt": ("DENIED", "DENIED", "ToolPolicy REALITY_EXECUTION global deny"),
+}
 
 
 class FullFunctionTrialError(ValueError):
     """The FFT-1A candidate could not prove execution, evidence, or cleanup."""
+
+
+def _assert_negative_matrix(rows: object, matrix_passed: object) -> None:
+    if (
+        not isinstance(rows, list)
+        or len(rows) != 7
+        or not all(isinstance(row, dict) for row in rows)
+    ):
+        raise FullFunctionTrialError("FFT-1A negative matrix coverage differs")
+    by_case = {str(row.get("case")): row for row in rows}
+    expected_cases = {"research_safety_block", *_NEGATIVE_SEMANTICS}
+    if len(by_case) != 7 or set(by_case) != expected_cases or matrix_passed is not True:
+        raise FullFunctionTrialError("FFT-1A negative matrix coverage differs")
+    for case, (expected, observed, boundary) in _NEGATIVE_SEMANTICS.items():
+        row = by_case[case]
+        reason = row.get("decision_reason")
+        if not (
+            row.get("expected") == expected
+            and row.get("observed") == observed
+            and row.get("boundary") == boundary
+            and row.get("passed") is True
+            and isinstance(reason, str)
+            and reason.strip()
+        ):
+            raise FullFunctionTrialError(f"FFT-1A negative semantics invalid: {case}")
+    safety = by_case["research_safety_block"]
+    reason = safety.get("decision_reason")
+    if not (
+        safety.get("expected") == "BLOCK"
+        and safety.get("observed") == "BLOCK;S7_ENTRY_GUARD_FAILED"
+        and safety.get("boundary") == "code-owned S7 Research Safety admission"
+        and safety.get("guard_name") == "scenario_generation_admission_frozen"
+        and safety.get("guard_status") == "FAIL"
+        and isinstance(reason, str)
+        and "BLOCK" in reason
+        and safety.get("downstream_invocation_count") == 1
+        and safety.get("blocked_downstream_invocation_count") == 0
+        and safety.get("passed") is True
+    ):
+        raise FullFunctionTrialError("FFT-1A Research Safety control invalid")
 
 
 @dataclass(frozen=True)
@@ -83,16 +139,21 @@ class FullFunctionTrialResult:
         observed = tuple((item.get("source"), item.get("target")) for item in trace)
         if observed != EXPECTED_STAGE_TRANSITIONS:
             raise FullFunctionTrialError("FFT-1A result lacks the exact ordered stage trace")
-        negative_matrix = self.document.get("negative_matrix")
-        if (
-            not isinstance(negative_matrix, list)
-            or len(negative_matrix) < 6
-            or not all(
-                isinstance(row, dict) and row.get("passed") is True for row in negative_matrix
-            )
-            or self.document.get("negative_matrix_passed") is not True
+        _assert_negative_matrix(
+            self.document.get("negative_matrix"), self.document.get("negative_matrix_passed")
+        )
+        stage_hashes = self.document.get("stage_terminal_hashes")
+        sidecars = self.document.get("s8_narrow_sidecars")
+        persistence = self.document.get("persistence")
+        if not (
+            isinstance(stage_hashes, dict)
+            and isinstance(sidecars, dict)
+            and sidecars.get("terminal_hash") == stage_hashes.get("S8_EVAL_NARROW")
+            and isinstance(persistence, dict)
+            and isinstance(persistence.get("tables_exercised"), list)
+            and bool(persistence["tables_exercised"])
         ):
-            raise FullFunctionTrialError("FFT-1A negative matrix is not fully fail-closed")
+            raise FullFunctionTrialError("FFT-1A result evidence bindings are incomplete")
         authority = self.document.get("authority")
         if not isinstance(authority, dict) or not authority or any(authority.values()):
             raise FullFunctionTrialError("FFT-1A result claims unauthorized authority")

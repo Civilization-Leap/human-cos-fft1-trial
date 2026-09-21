@@ -17,9 +17,34 @@ NEGATIVES = {
     "evidence_mismatch_or_forgery", "invalid_evaluator_or_independence",
     "final_synthesis_attempt", "reality_execution_attempt",
 }
+NEGATIVE_SEMANTICS = {
+    "challenger_block": ("BLOCK", "REJECTED", "Challenger downstream-clearance gate"),
+    "capability_gap": ("CAPABILITY_GAP", "OPEN", "qualified Domain route required"),
+    "evidence_mismatch_or_forgery": (
+        "REJECT", "REJECTED", "S8 exact evaluator task/packet evidence binding"
+    ),
+    "invalid_evaluator_or_independence": (
+        "REJECT", "REJECTED", "Evaluator qualification gate"
+    ),
+    "final_synthesis_attempt": (
+        "AUTHORIZATION_REQUIRED", "AUTHORIZATION_REQUIRED",
+        "ADVERSARIAL_REVIEW -> FINAL_SYNTHESIS authorization gate",
+    ),
+    "reality_execution_attempt": (
+        "DENIED", "DENIED", "ToolPolicy REALITY_EXECUTION global deny"
+    ),
+}
 AUTHORITY = {
     "controller_d", "final_synthesis", "final_claim", "human_seal",
     "publication", "reality_execution", "s8_full", "s9_plus",
+}
+REQUIRED_TABLES = {
+    "human_cos_framing_requirement", "human_cos_domain_output",
+    "human_cos_s6_disclosure_grant", "human_cos_s6_world_state_revision",
+    "human_cos_s6_critical_review_plan", "human_cos_s7_artifact",
+    "human_cos_s8_artifact", "human_cos_context_admission",
+    "human_cos_run_manifest_revision", "human_cos_raw_output",
+    "human_cos_audit_event",
 }
 
 
@@ -41,6 +66,75 @@ def read(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+def verify_negative_matrix(rows, matrix_passed):
+    require(isinstance(rows, list) and len(rows) == 7, "negative coverage differs")
+    require(all(isinstance(row, dict) for row in rows), "negative row invalid")
+    require({row.get("case") for row in rows} == NEGATIVES, "negative coverage differs")
+    require(matrix_passed is True, "negative matrix aggregate failed")
+    by_case = {row["case"]: row for row in rows}
+    require(len(by_case) == 7, "duplicate negative case")
+    for case, (expected, observed, boundary) in NEGATIVE_SEMANTICS.items():
+        row = by_case[case]
+        require(
+            row.get("expected") == expected
+            and row.get("observed") == observed
+            and row.get("boundary") == boundary
+            and row.get("passed") is True
+            and isinstance(row.get("decision_reason"), str)
+            and bool(row["decision_reason"].strip()),
+            "negative semantics invalid: " + case,
+        )
+    safety = by_case["research_safety_block"]
+    require(
+        safety.get("expected") == "BLOCK"
+        and safety.get("boundary") == "code-owned S7 Research Safety admission"
+        and safety.get("guard_name") == "scenario_generation_admission_frozen"
+        and safety.get("guard_status") == "FAIL"
+        and isinstance(safety.get("decision_reason"), str)
+        and "BLOCK" in safety["decision_reason"]
+        and safety.get("observed") == "BLOCK;S7_ENTRY_GUARD_FAILED"
+        and safety.get("downstream_invocation_count") == 1
+        and safety.get("blocked_downstream_invocation_count") == 0
+        and safety.get("passed") is True,
+        "Safety control invalid",
+    )
+
+
+def verify_cross_bindings(doc, receipt, checkpoint, snapshot):
+    tables = doc.get("persistence", {}).get("tables_exercised")
+    snapshot_items = snapshot.get("tables", [])
+    require(isinstance(snapshot_items, list), "persistence snapshot tables invalid")
+    snapshot_tables = []
+    for item in snapshot_items:
+        require(
+            isinstance(item, dict)
+            and set(item) == {"row_count", "rows", "table"}
+            and isinstance(item.get("rows"), list)
+            and bool(item["rows"])
+            and item.get("row_count") == len(item["rows"])
+            and isinstance(item.get("table"), str),
+            "persistence snapshot entry invalid",
+        )
+        snapshot_tables.append(item["table"])
+    require(
+        isinstance(tables, list)
+        and bool(tables)
+        and len(tables) == len(set(tables))
+        and REQUIRED_TABLES.issubset(tables)
+        and tables == receipt.get("tables_exercised")
+        and tables == checkpoint.get("tables_exercised")
+        and tables == snapshot_tables,
+        "persistence table binding mismatch",
+    )
+    require(
+        doc.get("s8_narrow_sidecars", {}).get("terminal_hash")
+        == doc.get("stage_terminal_hashes", {}).get("S8_EVAL_NARROW")
+        == receipt.get("s8_terminal_hash")
+        == checkpoint.get("s8_terminal_hash"),
+        "S8 sidecar terminal binding mismatch",
+    )
+
+
 def verify_result(doc):
     require(doc["result_hash"] == canonical_hash(
         {k: v for k, v in doc.items() if k != "result_hash"}), "result hash mismatch")
@@ -59,16 +153,7 @@ def verify_result(doc):
             and all(v is False for v in doc["authority"].values()), "authority expanded")
     require(doc["n3_status"] == "OPEN" and doc["sbx7_freeze"] is False
             and doc["real_case_effectiveness"] == "NOT_DEMONSTRATED", "boundary claim drift")
-    rows = doc["negative_matrix"]
-    require(len(rows) == 7 and {r["case"] for r in rows} == NEGATIVES, "negative coverage differs")
-    require(doc["negative_matrix_passed"] is True
-            and all(r["passed"] is True for r in rows), "negative failed")
-    safety = next(r for r in rows if r["case"] == "research_safety_block")
-    require(safety["guard_name"] == "scenario_generation_admission_frozen"
-            and safety["guard_status"] == "FAIL" and "BLOCK" in safety["decision_reason"]
-            and safety["observed"] == "BLOCK;S7_ENTRY_GUARD_FAILED"
-            and safety["downstream_invocation_count"] == 1
-            and safety["blocked_downstream_invocation_count"] == 0, "Safety control invalid")
+    verify_negative_matrix(doc.get("negative_matrix"), doc.get("negative_matrix_passed"))
     require(doc["persistence"]["readback_verified"] is True
             and doc["persistence"]["cleanup_verified"] is True
             and doc["s8_narrow_sidecars"]["persisted"] is True, "persistence incomplete")
@@ -110,6 +195,7 @@ def verify_directory(root):
     require(json.loads(checkpoint["evidence_snapshot_json"]) == snapshot
             and checkpoint["evidence_snapshot_hash"] == receipt["evidence_snapshot_hash"],
             "checkpoint snapshot differs")
+    verify_cross_bindings(doc, receipt, checkpoint, snapshot)
     return doc
 
 
