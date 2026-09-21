@@ -16,6 +16,22 @@ Before execution or review, include a short account in your human-readable repor
 
 For ordinary public testing, the explanation above remains available before testing. In separate comparative application studies, treat that explanation as an intervention: compare task-only, task-plus-explanation, and task-plus-explanation-plus-method conditions. The task-only condition receives the explanation and comprehension questions after its primary outputs are frozen; a participant already exposed to this page is not a fresh task-only control. Give all conditions the same necessary environment rules and safety limits. Measure explanation effects separately from the method's incremental effect. Prioritize precommitted prediction-versus-replay errors and executed simulation outcomes; use textual coverage as secondary evidence. Fix material-effect thresholds and a round limit before execution. If the method is only a prompt, do not describe it as the runtime tool. Keep future scenario evidence and specific expected answers separate until their designated stage. Reading prescribed public instructions during the current test is part of the task; disclose earlier project involvement separately and retain the version of materials read. Do not relabel past reports or erase prior exposure. Historical release instructions may lack this clarification; the immutable release ZIP and checksum are unchanged.
 
+## Fixed reference, revisable means
+
+The project adopts **“利他为先的利己” — pursuing one's own benefit by giving priority to benefiting others** as its fixed guiding principle. Parameters, algorithms, process logic and intermediate goals can change in light of consequences. Efficiency, test scores, task completion and system continuation are intermediate objectives, not ultimate ends. Ask what purpose a process objective serves, whether observed consequences still support it, and how a deviation can be corrected. This is the project's normative commitment, not an empirical result or a requirement that testers agree.
+
+For this release, the role analyses are prewritten Mock content. Running them tests processing and verification, not the tool's ability to discover new consequences. A continuous reference/causal-memory/next-purpose-generation loop is not demonstrated by this preview. No custom-case or live-model execution authority is added by these instructions. Do not request or approve an input merely to turn an execution gate green.
+
+## Low-cost first contribution
+
+Choose **one** route; do not acquire a new host or API subscription solely to participate.
+
+- **Public text or source available, no Docker:** spend at most 15 minutes on Track C. Compare one claim with its source: custom-case support in [the launcher](run_trial.py) and [CLI](runtime/src/human_cos/trial/cli.py), or consistency versus authenticity in [the verifier](tools/verify_fft1b.py). Return one exact file/function reference and one finding or unresolved question. Report `REVIEW_ONLY`, materials actually read, earlier project exposure and no execution. If only this task text is available, label the scope “task-text review only”; do not claim code review. A time-limited “no finding” does not establish correctness.
+- **A trusted dedicated Docker host is already available:** choose Track A or B and use the pinned release below. Verify the checksum before running. One launcher invocation already performs two runs; do not add repeats merely to seek a pass.
+- **No public materials or execution access:** record `ENVIRONMENT_BLOCKED` for an execution attempt. State what was inaccessible and stop; do not repeatedly attempt installation in a restricted sandbox. An operator may supply public files offline, with their version/hash and that assistance disclosed.
+
+Use the [feedback form](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml). For a read-only report, give the source commit or exact file URL when known. State “not downloaded / checksum not independently verified” instead of claiming you measured the published distribution hash. Unknown exit codes and runtime statuses remain NOT_RUN, not zero or PASS. The full machine-readable schema remains unchanged; a short issue is sufficient for an initial finding.
+
 ## Fixed target
 
 - Release: `v0.1.0-fft1-preview.2`
