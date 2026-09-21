@@ -16,6 +16,14 @@ A failure, false-positive success, reproducibility problem, unclear boundary or 
 
 AI / agent 可直接使用 [公开制品测试任务书](AGENT_TEST_TASK.md)，并按 [机器可读结果格式](agent_test_result.schema.json) 报告权限、协助程度、实际执行状态与发现。该流程本身不证明组织独立性。
 
+**No Docker? Start with a [15-minute, read-only test](AGENT_TEST_TASK.md#low-cost-first-contribution).** Review one public claim against one source path and report one concrete discrepancy or unresolved question. No host rental or model API key is needed; this is `REVIEW_ONLY`, not reproduction.
+
+## Fixed reference and present capability
+
+The project's fixed guiding principle is **“利他为先的利己” — pursuing one's own benefit by giving priority to benefiting others**. Within this design, parameters, algorithms, process logic and intermediate goals remain revisable. Efficiency, scores, passing tests and keeping a system running must not replace the purposes they serve. Consequences and counterevidence should expose when a chosen means no longer serves those purposes; repeating the principle is not evidence of effectiveness.
+
+This preview processes a fixed synthetic case with prewritten Mock role outputs. It does not generate fresh model analysis of your case, implement a demonstrated persistent causal-memory loop, or test whether consequence feedback changes the next round of purpose formation. Internal input-verification modules do not make custom cases executable through the public launcher. Engineering reproduction and functional or mechanism evidence are distinct.
+
 ## 下载与运行 / Download and run
 
 Download [FFT1-distribution.zip](FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.
