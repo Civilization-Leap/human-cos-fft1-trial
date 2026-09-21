@@ -77,6 +77,14 @@ Do not call an AI-operated run independent human validation. Do not call a revie
 
 ## Result format
 
+### Preview.2 reporting erratum (schema 1.2)
+
+The immutable preview.2 tag contains the obsolete schema 1.1, whose target constants incorrectly name preview.1. Use [the corrected, commit-pinned schema 1.2](https://github.com/Civilization-Leap/human-cos-fft1-trial/blob/263d58ede083a403298cf485bb950d49a5f09ac3/agent_test_result.schema.json) for preview.2 reports. Set `schema_version` to `1.2`; retain the actual preview.2 release and distribution hash. Never relabel an execution as preview.1 to satisfy the old schema.
+
+Existing reports remain evidence as originally submitted. Any normalized copy must preserve the original, identify the schema-version-only change, and must not alter execution claims. Schema validation checks report structure, not truth, independence or zero-context eligibility.
+
+This correction affects repository reporting instructions, not the inventoried runtime distribution. The preview.2 ZIP and its checksum remain unchanged; no new Docker run or preview.3 release is implied. Testers without repository/network access may receive this public schema and public source files from their operator; disclose that assistance and label any text-only examination `REVIEW_ONLY`.
+
 Return a JSON document conforming to [`agent_test_result.schema.json`](agent_test_result.schema.json), plus a short human-readable summary. Prepare a sanitized finding for the GitHub feedback form; submit it only with the controlling operator's authorization.
 
 A reported false-positive is not confirmed until its minimal reproducer is independently reproduced or the relevant evidence is reviewed. Once confirmed, open a public issue, mark the affected release claim as disputed or withdrawn, and keep it downgraded until a fix and retest are published.
