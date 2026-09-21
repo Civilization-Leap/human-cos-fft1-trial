@@ -6,6 +6,8 @@ A reproducible, fixed Mock S5→S8 narrow trial of Human-COS. This public snapsh
 
 **首次测试：[中文快速上手](QUICKSTART_ZH.md) · [提交测试反馈](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)**
 
+测试邀请 / Call for testing: [中文](TEST_INVITATION_ZH.md) · [English](TEST_INVITATION_EN.md)。包含可直接转发的简短版本 / Includes short versions for sharing.
+
 ## 下载与运行 / Download and run
 
 Download [FFT1-distribution.zip](https://github.com/Civilization-Leap/human-cos-fft1-trial/raw/refs/heads/main/FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.

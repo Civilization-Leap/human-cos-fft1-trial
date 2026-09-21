@@ -1,0 +1,35 @@
+# Call for testing: can the evidence support the reported pass?
+
+Author: 子君赋. Produced by Civilization Leap Research Group. This document is licensed under Apache-2.0.
+
+Human-COS FFT-1 is now available as a public trial preview. We invite developers and researchers working on Python, Docker, AI evaluation or reproducible systems to test a concrete question: does this fixed analysis pipeline actually perform the transitions, rejections, evidence readback and cleanup that it reports?
+
+## Pick one contribution
+
+- **Reproduce a run.** Download the pinned release and invoke its launcher on a trusted dedicated Docker host. One invocation runs the chain twice. Success, failure and inability to start are all useful findings.
+- **Challenge a reported pass.** Inspect the evidence for the exact 12 ordered transitions, 7 rejection probes, PostgreSQL persistence/readback and cleanup. Look for false success, missing failures or results that cannot be recomputed.
+- **Find a first-use obstacle.** Report a specific problem with installation, checksum verification, launch instructions or interpretation of results, preferably with a minimal reproducer.
+
+You do not need to read the entire project or endorse its broader theory. AI-assisted testing is welcome; identify whether the run was AI-operated, human-operated or collaborative.
+
+## Scope and limitations
+
+The release uses a fixed synthetic case and Mock model outputs through S5–S8 narrow, stopping at `ADVERSARIAL_REVIEW`. Engineering verification included two actual Docker executions and evidence readback: Mock describes the model-output lane, not a simulated Docker run.
+
+This is not evidence of live-model reasoning quality, real-case effectiveness, independent human review or readiness of the full Human-COS system. N-3 and two same-UID directory-acquisition races remain OPEN. Use a trusted dedicated host without a concurrent output-directory mutator. No reality-execution or Final Synthesis authority is enabled.
+
+## Start here
+
+- [Pinned release and checksums](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.1)
+- [Repository and launch instructions](https://github.com/Civilization-Leap/human-cos-fft1-trial)
+- [Structured feedback](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml)
+
+Requires Python 3.10+, Docker/Compose v2 and network access for images and dependencies. No model keys, private-repository access or inbound ports are required. Initial build time depends on the host and network.
+
+Please submit only a sanitized summary: release/package hash, environment versions, exit code, expected versus observed behavior and minimal reproduction steps. **Do not post raw evidence ZIPs, full logs, secrets, private paths or real-case material.** Keep originals locally; there is no automatic upload or configured private evidence intake endpoint.
+
+Original released code, tools and supporting docs use Apache-2.0; third-party terms are unchanged.
+
+## Short version for sharing
+
+Human-COS FFT-1 public preview seeks reproducibility and failure-reporting tests: a fixed Mock S5–S8 narrow pipeline checking 12 ordered transitions, 7 rejection probes, PostgreSQL readback and cleanup. Python + a trusted dedicated Docker host; no model keys. Help find failed runs, false passes or onboarding obstacles. Live-model quality and real-case effectiveness are not established; known limitations remain documented. Source and instructions: https://github.com/Civilization-Leap/human-cos-fft1-trial . Sanitized feedback only—no raw evidence uploads.
