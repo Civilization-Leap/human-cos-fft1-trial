@@ -14,6 +14,8 @@ A failure, false-positive success, reproducibility problem, unclear boundary or 
 
 测试邀请 / Call for testing: [中文](TEST_INVITATION_ZH.md) · [English](TEST_INVITATION_EN.md)。包含可直接转发的简短版本 / Includes short versions for sharing.
 
+第三方 AI / agent 可直接使用 [固定测试任务书](AGENT_TEST_TASK.md)，并按 [机器可读结果格式](agent_test_result.schema.json) 报告权限、协助程度、实际执行状态与发现。
+
 ## 下载与运行 / Download and run
 
 Download [FFT1-distribution.zip](https://github.com/Civilization-Leap/human-cos-fft1-trial/raw/refs/heads/main/FFT1-distribution.zip), verify [SHA256SUMS](SHA256SUMS), and extract into a new directory. Requires Python 3.10+, Docker with Compose v2, and network access to download images/dependencies. No Git, private repository access or model API keys required.

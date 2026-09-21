@@ -36,6 +36,23 @@ body:
     validations:
       required: true
   - type: textarea
+    id: agent_disclosure
+    attributes:
+      label: "AI / agent 身份与权限披露 / Agent identity and access"
+      description: "如使用 AI/agent，请填写产品/模型、操作者、shell/network/Docker/写入权限、人工协助、是否接触过项目讨论；纯人工可写 N/A。"
+    validations:
+      required: true
+  - type: dropdown
+    id: execution_class
+    attributes:
+      label: "证据等级 / Execution class"
+      options:
+        - "EXECUTED / 实际执行"
+        - "ENVIRONMENT_BLOCKED / 环境阻断"
+        - "REVIEW_ONLY / 仅审查"
+    validations:
+      required: true
+  - type: textarea
     id: environment
     attributes:
       label: "环境 / Environment"

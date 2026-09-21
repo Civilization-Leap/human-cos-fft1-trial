@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Civilization-Leap/human-cos-fft1-trial/blob/main/agent_test_result.schema.json",
+  "title": "Human-COS FFT-1 third-party AI/agent test result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "target",
+    "agent",
+    "access",
+    "test",
+    "outcome",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["release", "distribution_sha256", "source"],
+      "properties": {
+        "release": { "const": "v0.1.0-fft1-preview.1" },
+        "distribution_sha256": { "const": "6eb838535e6cbce3ce4e2546aa916b5be8aaa826a9fd824564c6174998bf5d48" },
+        "source": { "enum": ["PINNED_RELEASE", "PUBLIC_REPOSITORY", "OTHER"] }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product", "model", "operator", "prior_project_context"],
+      "properties": {
+        "product": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "operator": { "type": "string", "minLength": 1 },
+        "prior_project_context": { "type": "boolean" }
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shell", "network", "docker", "repository_write", "human_assistance"],
+      "properties": {
+        "shell": { "type": "boolean" },
+        "network": { "type": "boolean" },
+        "docker": { "type": "boolean" },
+        "repository_write": { "type": "boolean" },
+        "human_assistance": { "type": "string" }
+      }
+    },
+    "test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["track", "execution_class", "environment", "interventions"],
+      "properties": {
+        "track": { "enum": ["A_REPRODUCTION", "B_FALSE_POSITIVE_CHALLENGE", "C_FIRST_USE_REVIEW"] },
+        "execution_class": { "enum": ["EXECUTED", "ENVIRONMENT_BLOCKED", "REVIEW_ONLY"] },
+        "environment": { "type": "string", "minLength": 1 },
+        "interventions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "summary", "minimal_reproducer", "exit_code"],
+      "properties": {
+        "status": { "enum": ["PASS", "FAIL", "BLOCKED", "UNCERTAIN"] },
+        "summary": { "type": "string", "minLength": 1 },
+        "minimal_reproducer": { "type": "array", "items": { "type": "string" } },
+        "exit_code": { "type": ["integer", "null"] },
+        "physical_reproduction": { "type": ["boolean", "null"] },
+        "cleanup_passed": { "type": ["boolean", "null"] },
+        "finding_category": {
+          "enum": ["NONE", "REPRODUCIBILITY", "FALSE_POSITIVE", "ENVIRONMENT", "BOUNDARY", "MISSING_TEST", "DOCUMENTATION", "OTHER"]
+        }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["external_ai_test", "independent_human_validation", "live_model_validated", "real_case_effectiveness"],
+      "properties": {
+        "external_ai_test": { "type": "boolean" },
+        "independent_human_validation": { "const": false },
+        "live_model_validated": { "const": false },
+        "real_case_effectiveness": { "const": false }
+      }
+    }
+  }
+}
