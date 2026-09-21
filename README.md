@@ -36,6 +36,20 @@ N-3 and two same-UID output-directory acquisition races remain OPEN. Do not run 
 
 The public Issues record includes the review findings that motivated preview.2. Treat this preview as testable and falsifiable, not independently validated.
 
+## Verification boundaries (preview.2 clarification)
+
+The detached verifier checks internal consistency, not provenance. It cannot by itself distinguish real execution evidence from an internally consistent fabricated evidence set, or prove that rejection probes actually ran. Matching hashes and seven matching probe records are not execution attestation. The official flow relies on the pinned runtime executing on a trusted dedicated host.
+
+- **Layer 1 — `verify_directory`:** checks hashes, cross-file bindings, ordered transitions and reported probe fields. Its table gate requires an 11-table subset; a consistent superset can pass.
+- **Layer 2 — `compare_directories`:** requires the exact 26-table inventory in the repeatability policy and compares both runs under that policy. It reconstructs the S8 terminal hash from its three artifact hashes. It does not explicitly reconstruct S5/S6/S7 terminal hashes from authoritative stage preimages; those terminals receive cross-file consistency and pairwise comparison checks, including graph normalization where resolvable.
+- **Layer 3 — official runner:** runs both checks and performs production readback inside the container. That readback covers the container-side copy; the exported host copy is checked separately by the detached tools. These are different coverage scopes.
+
+The pairwise comparator is not an external authenticity anchor. Identical coordinated changes to both runs are not generally detectable by comparison alone, although per-run invariants still reject some such changes (including an extra table). Neither standalone verifier should be used to authenticate an untrusted third party's claimed execution.
+
+A project-controlled review and local rerun of synthetic fixtures confirmed Layer 1 acceptance of internally consistent fabricated evidence and Layer 2 inventory rejection. These fixtures did not complete the full Layer 2 semantic comparison or the official Docker flow. No end-to-end false positive within the published trusted-host model was established by this review; this is not independent physical reproduction.
+
+This is a documentation clarification. The fixed Mock S5→S8 narrow scope, preview.2 release ZIP, checksum and runtime behavior are unchanged.
+
 ## Source and integrity (preview.2)
 
 The candidate distribution ZIP SHA-256 is:
