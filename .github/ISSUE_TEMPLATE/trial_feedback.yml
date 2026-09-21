@@ -22,6 +22,7 @@ body:
         - "未能启动 / Could not start"
         - "运行失败或拒绝 / Failed or rejected"
         - "两轮验证与清理通过 / Two runs and cleanup passed"
+        - "仅审查发现 / Review-only finding"
         - "无法判定 / Uncertain"
     validations:
       required: true

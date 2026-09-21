@@ -2,7 +2,7 @@
 
 作者：子君赋；出品：文明跃迁研究组。
 
-A reproducible, fixed Mock S5→S8 narrow trial of Human-COS. This public snapshot includes the verified original source, Docker runner, evidence verification tools and Apache-2.0 documentation.
+A publicly runnable, fixed Mock S5→S8 narrow trial intended for reproducibility testing. This snapshot includes source files matching the project-maintained inventory, a Docker runner, evidence verification tools and Apache-2.0 documentation.
 
 **Test question:** Can you reproduce the fixed Mock S5→S8 narrow trial, and find a case where it reports success incorrectly?
 
@@ -14,7 +14,7 @@ A failure, false-positive success, reproducibility problem, unclear boundary or 
 
 测试邀请 / Call for testing: [中文](TEST_INVITATION_ZH.md) · [English](TEST_INVITATION_EN.md)。包含可直接转发的简短版本 / Includes short versions for sharing.
 
-第三方 AI / agent 可直接使用 [固定测试任务书](AGENT_TEST_TASK.md)，并按 [机器可读结果格式](agent_test_result.schema.json) 报告权限、协助程度、实际执行状态与发现。
+AI / agent 可直接使用 [公开制品测试任务书](AGENT_TEST_TASK.md)，并按 [机器可读结果格式](agent_test_result.schema.json) 报告权限、协助程度、实际执行状态与发现。该流程本身不证明组织独立性。
 
 ## 下载与运行 / Download and run
 
@@ -28,11 +28,13 @@ Use a nonexistent output directory on a trusted dedicated Docker host. [中文�
 
 ## 本次公开范围 / Scope
 
-The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. It verifies 12 authorized transitions, 7 rejection probes, PostgreSQL persistence/readback, evidence and cleanup.
+The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. The project's AI-operated harness checks 12 authorized transitions, 7 rejection probes, PostgreSQL persistence/readback, evidence and cleanup.
 
 Before publication: 49 wrapper tests; exact-candidate CI; two real Docker executions; local recomputation of retained evidence and bounded repeatability comparison passed. This is AI-operated engineering verification on a fresh GitHub VM, not independent human or external-organization validation. No real-model or real-case effectiveness claim.
 
 N-3 and two same-UID output-directory acquisition races remain OPEN. Do not run with a concurrent output mutator. Live provider NOT_RUN; REAL_CASE_EFFECTIVENESS NOT_DEMONSTRATED. No Final Synthesis, Final Claim, Controller D, Human Seal, Publication Authority, Reality Execution, S8 FULL or S9+ authority is enabled. Support boundaries do not add license restrictions.
+
+Current public review findings are tracked in [Issues](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues), including [a REVIEW_ONLY verifier false-positive path](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/1). Treat the preview as testable and falsifiable, not validated.
 
 ## Source and integrity
 

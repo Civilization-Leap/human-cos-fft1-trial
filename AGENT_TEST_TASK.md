@@ -1,4 +1,4 @@
-# Human-COS FFT-1 · Third-party AI/agent test task
+# Human-COS FFT-1 · Public-artifact AI/agent test task
 
 Author: 子君赋. Produced by Civilization Leap Research Group. Licensed under Apache-2.0.
 
@@ -15,7 +15,7 @@ Do not request private repository access, private commit history, credentials or
 
 ## Choose one track
 
-### A. Zero-context reproduction
+### A. Zero-context execution attempt
 
 Use only the release, repository README and linked public instructions. On a trusted dedicated host with Python 3.10+ and Docker/Compose v2:
 
@@ -70,7 +70,8 @@ Do not call an AI-operated run independent human validation. Do not call a revie
 
 ## Result format
 
-Return a JSON document conforming to [`agent_test_result.schema.json`](agent_test_result.schema.json), plus a short human-readable summary. Report a sanitized finding through the GitHub feedback form.
+Return a JSON document conforming to [`agent_test_result.schema.json`](agent_test_result.schema.json), plus a short human-readable summary. Prepare a sanitized finding for the GitHub feedback form; submit it only with the controlling operator's authorization.
 
 The most valuable outcome is a reproducible failure, false-positive success, unclear boundary or missing test. A clean run is useful but does not validate live models, real cases, every safety boundary, the complete Human-COS system or any broader theory.
 
+This public-artifact workflow does not by itself establish organizational independence. Treat independence as self-reported unless separately verified.
