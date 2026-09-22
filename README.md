@@ -74,6 +74,17 @@ This hash identifies the exact preview.2 distribution that passed the project-co
 
 No original private Git history, raw host evidence, model credentials, dependency wheels or container images are included.
 
+## 可选应用目的测试 / Optional application-purpose test
+
+A separate software-external exercise now examines whether causal analysis can preserve a national and civilizational purpose instead of reducing it to sector income, rankings or project performance:
+
+- [Singapore SG-01 test task](AGENT_TEST_TASK.md#optional-application-exercise-singapore-sg-01)
+- [Public call and response thread — Issue #5](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/5)
+
+This exercise may be completed by an AI/agent or researcher without Docker. It is labelled `EXTERNAL_CASE_ANALYSIS` in prose and does **not** establish runtime execution, method effectiveness, real-world validity or national endorsement.
+
+另有一项软件外的新加坡 SG-01 应用目的测试，检验分析能否保持国家生存发展、影响力与文明贡献尺度，避免降维成收入、排名或项目绩效。无需 Docker；结果不计作当前 Mock 运行或现实有效性验证。
+
 ## 反馈 / Feedback
 
 Use this repository's Issues for a sanitized summary: package SHA, operating system, Python/Docker/Compose versions, expected versus observed outcome, and a minimal reproducer. Do not upload raw evidence ZIPs, credentials, private paths, host identifiers or real-case material to public issues. Preserve raw evidence locally; redact a separate copy if excerpts are needed. Nothing is uploaded automatically.
