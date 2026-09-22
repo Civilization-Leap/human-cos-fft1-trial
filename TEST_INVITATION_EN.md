@@ -9,7 +9,7 @@ Human-COS FFT-1 is now available as a public trial preview. We invite developers
 ## Pick one contribution
 
 - **Reproduce a run.** Download the pinned release and invoke its launcher on a trusted dedicated Docker host. One invocation runs the chain twice. Success, failure and inability to start are all useful findings.
-- **Challenge a reported pass.** Inspect the evidence for the exact 12 ordered transitions, 7 rejection probes, PostgreSQL persistence/readback and cleanup. Look for false success, missing failures or results that cannot be recomputed.
+- **Challenge a reported pass.** Inspect the evidence for the exact 12 ordered transitions, 7 negative-path/boundary probes, PostgreSQL persistence/readback and cleanup. The set contains five BLOCK/REJECTED/DENIED outcomes, one OPEN capability gap and one AUTHORIZATION_REQUIRED boundary; do not describe all seven as rejections. Look for false success, missing failures or results that cannot be recomputed.
 - **Find a first-use obstacle.** Report a specific problem with installation, checksum verification, launch instructions or interpretation of results, preferably with a minimal reproducer.
 
 You do not need to read the entire project or endorse its broader theory. AI-assisted testing is welcome; identify whether the run was AI-operated, human-operated or collaborative.
@@ -40,4 +40,4 @@ Original released code, tools and supporting docs use Apache-2.0; third-party te
 
 ## Short version for sharing
 
-Human-COS FFT-1 public preview seeks reproducibility and failure-reporting tests: a fixed Mock S5–S8 narrow pipeline checking 12 ordered transitions, 7 rejection probes, PostgreSQL readback and cleanup. Python + a trusted dedicated Docker host; no model keys. Help find failed runs, false passes or onboarding obstacles. Live-model quality and real-case effectiveness are not established; known limitations remain documented. Source and instructions: https://github.com/Civilization-Leap/human-cos-fft1-trial . Sanitized feedback only—no raw evidence uploads.
+Human-COS FFT-1 public preview seeks reproducibility and failure-reporting tests: a fixed Mock S5–S8 narrow pipeline checking 12 ordered transitions, 7 negative-path/boundary probes, PostgreSQL readback and cleanup. Python + a trusted dedicated Docker host; no model keys. Help find failed runs, false passes or onboarding obstacles. Live-model quality and real-case effectiveness are not established; known limitations remain documented. Source and instructions: https://github.com/Civilization-Leap/human-cos-fft1-trial . Sanitized feedback only—no raw evidence uploads.
