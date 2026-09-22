@@ -7,7 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from verify_fft1b import verify_cross_bindings, verify_negative_matrix
+from compare_repeat import compare_snapshots
+from verify_fft1b import SHA, canonical_hash, verify_cross_bindings, verify_negative_matrix
 
 
 def valid_negative_matrix():
@@ -149,6 +150,72 @@ class VerifierHardeningTests(unittest.TestCase):
         bad["s8_narrow_sidecars"]["terminal_hash"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "S8 sidecar"):
             verify_cross_bindings(bad, receipt, checkpoint, snapshot)
+
+    def test_bounded_comparator_rejects_equal_inventory_row_content_change(self):
+        policy = {
+            "candidate_sha": SHA,
+            "storage_created_at_tables": [
+                "human_cos_initial_framing",
+                "human_cos_context_admission",
+                "human_cos_run_manifest_revision",
+            ],
+            "clock_paths": ["human_cos_initial_framing/.payload.finished_at"],
+            "unordered_paths": [],
+        }
+        windows = [
+            ["2026-09-22T10:00:00+00:00", "2026-09-22T10:00:10+00:00"],
+            ["2026-09-22T11:00:00+00:00", "2026-09-22T11:00:10+00:00"],
+        ]
+
+        def snapshot(hour):
+            payload = {
+                "run_id": "run-1",
+                "content": {"verdict": "DENY"},
+                "finished_at": f"2026-09-22T{hour}:00:01+00:00",
+                "source_hash": "e" * 64,
+            }
+            digest = canonical_hash(payload)
+            return {
+                "format": "synthetic-only",
+                "tables": [
+                    {
+                        "table": "human_cos_initial_framing",
+                        "row_count": 1,
+                        "rows": [
+                            {
+                                "run_id": "run-1",
+                                "record_hash": digest,
+                                "payload": {**payload, "record_hash": digest},
+                                "created_at": f"2026-09-22T{hour}:00:02+00:00",
+                            }
+                        ],
+                    },
+                    {
+                        "table": "human_cos_context_admission",
+                        "row_count": 0,
+                        "rows": [],
+                    },
+                    {
+                        "table": "human_cos_run_manifest_revision",
+                        "row_count": 0,
+                        "rows": [],
+                    },
+                ],
+            }
+
+        left, right = snapshot("10"), snapshot("11")
+        baseline, _ = compare_snapshots(left, right, windows, policy)
+        self.assertTrue(baseline["accepted"])
+
+        row = right["tables"][0]["rows"][0]
+        row["payload"].pop("record_hash")
+        row["payload"]["content"]["verdict"] = "ALLOW"
+        digest = canonical_hash(row["payload"])
+        row["payload"]["record_hash"] = row["record_hash"] = digest
+
+        changed, _ = compare_snapshots(left, right, windows, policy)
+        self.assertFalse(changed["accepted"])
+        self.assertTrue(changed["semantic_differences"])
 
     def test_public_launcher_help_hides_private_source_options(self):
         completed = subprocess.run(
