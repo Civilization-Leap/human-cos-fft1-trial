@@ -59,6 +59,52 @@ Choose **one** route; do not acquire a new host or API subscription solely to pa
 
 Use the [feedback form](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/new?template=trial_feedback.yml). For a read-only report, give the source commit or exact file URL when known. State “not downloaded / checksum not independently verified” instead of claiming you measured the published distribution hash. Unknown exit codes and runtime statuses remain NOT_RUN, not zero or PASS. The full machine-readable schema remains unchanged; a short issue is sufficient for an initial finding.
 
+## Optional application exercise: Singapore SG-01
+
+### 新加坡：汇聚、能力生成与多向发展
+
+**用途与范围。** 这是一项软件外的探索性案例分析，用于展示和质疑 Human-COS 所关注的因果关系；不是 Track A/B/C 的替代执行路线，不调用当前 fixed Mock preview 处理自定义案例，也不证明工具增益或现实有效性。输出最多是提案与建议。无需 Docker、API 订阅或新增主机。先做一份短报告，不因没有正向结论而重复开跑。
+
+**给测试者的任务：**
+
+> 为新加坡提出面向 AGI 时代的发展方向建议。考察金融服务、人才发展、资源协调与文明高地之间可能形成的联系：汇聚能否生成新增能力，新增能力怎样反向、多向输出，其他地区的发展又怎样反馈回来？
+>
+> 理解本页“利他为先的利己”的固定参照及其缘由，但不要把它当作事实证据或预定答案。比较至少两条可行候选路径，并允许提出第三条。说明各路径希望实现什么、依赖哪些条件、怎样服务真实需要，以及在哪些条件下应当放弃或调整。不要把中心规模、排名或控制他者的能力自动当作成功。
+
+**材料与事实纪律。** 本页不是新加坡国情资料库。允许核验公开的一手资料，并标注来源与日期；无法联网或资料不足时，明确标为条件性推演，不编造政策、机构承诺、数值或模拟结果。无需私有材料。若操作者另行提供历史提案，披露所用版本，把提案当作候选方案；其中的预测、目标与未经复核的数字不能自动升级为事实。
+
+**一次完成三个步骤：**
+
+1. **先留下初始判断。** 简述应用目的、两条候选路径和暂时倾向。给出至少一条使你改变判断的证据条件，保留该记录，不在后续覆盖。
+2. **展开并反向检验因果链。** 对关键环节填写下表，既检查新增能力与多向收益，也检查成本、集中依赖及反馈中断。不把汇聚预设为零和，也不把输出预设为自动普惠。
+3. **形成最终建议。** 明确哪些判断保留、哪些修正，以及修正来自哪条证据或哪项条件推理。没有新增事实就不能声称“反馈已经验证”。保持原判断可以合理；改变行动不自动等于改变目的。
+
+| 待检验环节 | 所需内容 |
+| --- | --- |
+| 资源、人才、知识的汇聚 | 为满足谁的需要？参与者获得什么，付出什么？ |
+| 新增能力的生成 | 哪种协作使能力超过原先分散状态？有什么证据或可检验预测？ |
+| 反向、多向输出 | 通过哪些渠道进入其他地区？谁能够使用，谁可能被排除？ |
+| 多地发展及反馈 | 其他主体如何增强自主能力？怎样反馈为新的创造、合作与发展空间？ |
+| 时间与失效条件 | 短期与长期是否不同？哪个前提失效会改变方向判断？ |
+
+**共同可见的压力问题（不是隐藏答案或已发生事件）：**
+- 如果汇聚增加，但输出渠道尚未形成，应怎样区分短期建设阶段与长期依赖结构？
+- 如果合作地区变强、对新加坡某项旧服务的依赖下降，同时共同发展空间扩大，如何判断成功并调整下一阶段目标？
+- 如果一项计划提高中心排名，却损害居民或合作方的发展条件，应修改哪些手段或过程目标？
+- 如果存在成本更低、同样增进共同发展的替代方案，什么依据支持保留或替换原方案？
+
+**交付与停止线。** 一份不超过两页的报告即可：材料与背景披露、初始判断、关键因果链、反例或失效条件、最终建议及未解决问题。标注“软件外案例分析 / EXTERNAL_CASE_ANALYSIS”，这是报告标题标签，不是现有 JSON schema 的新增枚举；不要把它填入执行类别或伪造程序输出。交付后停止，待真实反馈再修订。可将脱敏后的一个具体问题提交到现有反馈入口，不必先写完整机器报告。
+
+**如何读结果。** 看因果是否连贯、有无来源支持、是否遗漏主体和时间尺度、是否给出可反驳条件；不以赞同项目、赞美新加坡、方案宏大或改动次数评分。“高必然”须落实为在明确前提下的方向约束与对替代解释的检验，不是概率承诺，也不保证某个具体制度成功。本练习不测量方法净增益；读过这些说明及压力问题的执行者不能作为未接触说明的对照组。后续若做对照实验，另行事前冻结条件与判定规则，不回写本次记录。
+
+### English entry
+
+SG-01 is an optional external case-analysis exercise, not a custom-case feature of the Mock runtime. Propose and compare at least two development paths for Singapore in an AGI scenario. Examine how talent, resources and knowledge may generate new capabilities, how these capabilities diffuse reciprocally and in multiple directions, and how development elsewhere feeds back into further cooperation. Use the fixed principle above as an explicit design reference, not evidence or a required conclusion.
+
+Preserve an initial judgment, examine causal links and counterexamples, and produce a final recommendation with change reasons and unresolved questions. Verify current factual claims against dated primary sources where available; otherwise label the work conditional reasoning. The visible pressure questions concern missing diffusion channels, partners becoming less dependent as they develop, rankings conflicting with welfare, and lower-cost alternatives. They are hypothetical prompts, not observed events.
+
+Stop after one short report of at most two pages. Label it EXTERNAL_CASE_ANALYSIS in prose; do not add this label to the execution schema. No runtime execution, method benefit, real-world effectiveness or national endorsement follows from completing the exercise. Prior exposure remains disclosed.
+
 ## Fixed target
 
 - Release: `v0.1.0-fft1-preview.2`
