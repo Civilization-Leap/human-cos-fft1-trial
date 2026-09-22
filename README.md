@@ -20,7 +20,7 @@ AI / agent 可直接使用 [公开制品测试任务书](AGENT_TEST_TASK.md)，�
 
 ## Fixed reference and present capability
 
-The project's fixed guiding principle is **“利他为先的利己” — pursuing one's own benefit by giving priority to benefiting others**. Within this design, parameters, algorithms, process logic and intermediate goals remain revisable. Efficiency, scores, passing tests and keeping a system running must not replace the purposes they serve. Consequences and counterevidence should expose when a chosen means no longer serves those purposes; repeating the principle is not evidence of effectiveness.
+The project makes this strong claim without retreat: **“利他为先的利己” — pursuing one's own benefit by giving priority to benefiting others — is the only path for preventing self-interest-first recursive cycles from closing correction routes and ending in irreversible outcomes. Counterevidence is explicitly requested.** Read the [Strong Claim and Falsification Notice](STRONG_CLAIM_AND_FALSIFICATION_NOTICE.md). “Only path” refers to the foundational direction, not one fixed policy, institution or algorithm. Parameters, process logic, intermediate goals and concrete means remain revisable. Agreement earns no test credit, and repeating the principle is not evidence of effectiveness.
 
 This preview processes a fixed synthetic case with prewritten Mock role outputs. It does not generate fresh model analysis of your case, implement a demonstrated persistent causal-memory loop, or test whether consequence feedback changes the next round of purpose formation. Internal input-verification modules do not make custom cases executable through the public launcher. Engineering reproduction and functional or mechanism evidence are distinct.
 
