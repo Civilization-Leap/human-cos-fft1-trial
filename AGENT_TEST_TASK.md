@@ -170,7 +170,7 @@ Use only the release, repository README and linked public instructions. On a tru
 Execute the release, then determine whether a reported pass is supported by the retained evidence. Check at least:
 
 - the exact ordered 12-transition trace;
-- all 7 rejection probes as actual observed rejections;
+- all 7 negative-path/boundary probes with their exact observed semantics: five BLOCK/REJECTED/DENIED outcomes, one OPEN capability gap and one AUTHORIZATION_REQUIRED boundary;
 - PostgreSQL persistence and readback;
 - evidence binding and recomputation;
 - cleanup as an observed outcome;
@@ -194,7 +194,7 @@ Code reading without an actual Docker run is valid for this track, but must be l
 
 ## Interpret verifier results correctly
 
-Read the [preview.2 verification boundaries](README.md#verification-boundaries-preview2-clarification) before interpreting a pass. Detached checks establish internal consistency, not execution provenance or proof that rejection probes ran. Layer 1 allows supersets of 11 required tables; Layer 2 requires the exact 26-table policy inventory. S8 has explicit terminal preimage reconstruction in Layer 2; S5/S6/S7 do not have equivalent explicit reconstruction. Production readback covers the container-side copy, not the exported host copy.
+Read the [preview.2 verification boundaries](README.md#verification-boundaries-preview2-clarification) before interpreting a pass. Detached checks establish internal consistency, not execution provenance or proof that negative-path/boundary probes ran. Layer 1 allows supersets of 11 required tables; Layer 2 requires the exact 26-table policy inventory. S8 has explicit terminal preimage reconstruction in Layer 2; S5/S6/S7 do not have equivalent explicit reconstruction. Production readback covers the container-side copy, not the exported host copy.
 
 When using synthetic fixtures, separately report Layer 1 checks, the Layer 2 inventory gate, full Layer 2 semantic comparison and the official Docker flow. Executing an inventory gate does not establish execution of the full comparator or runner. Label code-derived paths as inferences. Coordinated changes to both exported runs test a different trust assumption from one-sided mutations; disclose any required host tampering. A standalone verifier accepting self-consistent fabricated evidence does not, by itself, establish an end-to-end false positive within the published trusted-host model.
 
