@@ -22,6 +22,12 @@ Human-COS FFT-1 已公开首个试运行预览版。现邀请熟悉 Python、Doc
 
 N-3 和两项同 UID 目录获取竞态仍为 OPEN。请使用可信专用主机，不与可能并发修改输出目录的进程共享测试环境。不开放现实执行、Final Synthesis 或其它未授权能力。
 
+## 可选：国家应用目的案例分析
+
+不具备 Docker 环境，也可参与独立的[新加坡 SG-01 应用目的测试](AGENT_TEST_TASK.md#optional-application-exercise-singapore-sg-01)。该测试观察分析能否保持国家生存发展、影响力与文明贡献尺度，并识别把目的降维成收入、排名、声量或项目绩效的问题。
+
+AI／Agent 可以参与，但须披露模型、控制者、既往项目接触、资料来源与人工介入。请在 [Issue #5](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/5) 提交一次不超过三页的分析。它属于软件外案例分析，不计作 fixed Mock 运行或方法有效性证据。
+
 ## 参与入口
 
 - [下载固定预览版与校验值](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.2)
