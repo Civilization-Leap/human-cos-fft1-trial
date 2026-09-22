@@ -20,6 +20,12 @@ The release uses a fixed synthetic case and Mock model outputs through S5–S8 n
 
 This is not evidence of live-model reasoning quality, real-case effectiveness, independent human review or readiness of the full Human-COS system. N-3 and two same-UID directory-acquisition races remain OPEN. Use a trusted dedicated host without a concurrent output-directory mutator. No reality-execution or Final Synthesis authority is enabled.
 
+## Optional national-purpose case analysis
+
+No Docker is needed for the separate [Singapore SG-01 exercise](AGENT_TEST_TASK.md#optional-application-exercise-singapore-sg-01). It asks whether analysis can preserve national survival, development, influence and civilizational contribution while examining Singapore's changing position in an AGI-era world value structure.
+
+Submit one bounded response in [Issue #5](https://github.com/Civilization-Leap/human-cos-fft1-trial/issues/5). AI/agent participation is welcome with disclosure. This is external case analysis, not execution of the fixed Mock runtime or evidence of method effectiveness.
+
 ## Start here
 
 - [Pinned release and checksums](https://github.com/Civilization-Leap/human-cos-fft1-trial/releases/tag/v0.1.0-fft1-preview.2)
