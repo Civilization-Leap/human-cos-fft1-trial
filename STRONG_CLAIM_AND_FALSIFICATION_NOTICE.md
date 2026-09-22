@@ -94,7 +94,7 @@
 
 ## English summary
 
-Human-COS openly advances a strong claim: when purposes are formed with self-interest first and others are treated mainly as constraints, instruments or threats, local gains can externalize costs and trigger recursive defence, retaliation and control. If those cycles close exit, correction and purpose-revision channels, they tend toward irreversible outcomes. The project therefore treats **self-interest through benefiting others first** as the necessary underlying direction for changing that recursion.
+Human-COS openly advances a strong claim: when purposes are formed with self-interest first and others are treated mainly as constraints, instruments or threats, local gains can externalize costs and trigger recursive defence, retaliation and control. If those cycles close exit, correction and purpose-revision channels, they tend toward irreversible outcomes. The project therefore states that **self-interest through benefiting others first is the only path for changing that recursion at its root**. This is not offered as one option among several. The project explicitly asks for counterevidence.
 
 “Necessary” refers to the underlying direction, not to one institution, policy, algorithm or implementation. Means remain revisable.
 
