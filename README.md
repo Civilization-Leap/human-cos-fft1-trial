@@ -36,7 +36,7 @@ Use a nonexistent output directory on a trusted dedicated Docker host. Operator 
 
 ## 本次公开范围 / Scope
 
-The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. The project's AI-operated harness checks 12 authorized transitions, 7 rejection probes, PostgreSQL persistence/readback, evidence and cleanup.
+The fixed Mock chain exercises S5-CDE, S6-WCI, S7-SCS narrow and S8-EVAL narrow, then stops at ADVERSARIAL_REVIEW. The project's AI-operated harness checks 12 authorized transitions, 7 negative-path/boundary probes, PostgreSQL persistence/readback, evidence and cleanup. The seven probes comprise five BLOCK/REJECTED/DENIED outcomes, one OPEN capability gap, and one AUTHORIZATION_REQUIRED boundary.
 
 The historical preview.1 had project-operated Docker runs, but public review found verifier false-positive paths. Preview.2 hardens those checks and has passed local unit, archive-integrity and mutation tests plus a project-controlled clean-host Docker/Compose run and evidence intake. This is **not independent external validation**. No real-model or real-case effectiveness claim is made. See the sanitized [validation record](VALIDATION.md).
 
@@ -46,7 +46,7 @@ The public Issues record includes the review findings that motivated preview.2. 
 
 ## Verification boundaries (preview.2 clarification)
 
-The detached verifier checks internal consistency, not provenance. It cannot by itself distinguish real execution evidence from an internally consistent fabricated evidence set, or prove that rejection probes actually ran. Matching hashes and seven matching probe records are not execution attestation. The official flow relies on the pinned runtime executing on a trusted dedicated host.
+The detached verifier checks internal consistency, not provenance. It cannot by itself distinguish real execution evidence from an internally consistent fabricated evidence set, or prove that negative-path/boundary probes actually ran. Matching hashes and seven matching probe records are not execution attestation. The official flow relies on the pinned runtime executing on a trusted dedicated host.
 
 - **Layer 1 — `verify_directory`:** checks hashes, cross-file bindings, ordered transitions and reported probe fields. Its table gate requires an 11-table subset; a consistent superset can pass.
 - **Layer 2 — `compare_directories`:** requires the exact 26-table inventory in the repeatability policy and compares both runs under that policy. It reconstructs the S8 terminal hash from its three artifact hashes. It does not explicitly reconstruct S5/S6/S7 terminal hashes from authoritative stage preimages; those terminals receive cross-file consistency and pairwise comparison checks, including graph normalization where resolvable.
