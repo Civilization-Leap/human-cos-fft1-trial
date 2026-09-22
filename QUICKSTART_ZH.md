@@ -58,7 +58,9 @@ echo $?
 | 进程退出码 | `0` |
 | `physical_reproduction` | `TWO_RUNS_VERIFIED_AWAITING_REVIEW` 或 `TWO_RUNS_BOUNDED_EQUIVALENCE_AWAITING_REVIEW` |
 | `cleanup` | `OWNED_CONTAINERS_NETWORKS_VOLUMES_ABSENT` |
-| 两轮结果 | 各 12 条有序转换、7 项拒绝探针，停在 `ADVERSARIAL_REVIEW` |
+| 两轮结果 | 各 12 条有序转换、7 项负路径／边界探针，停在 `ADVERSARIAL_REVIEW` |
+
+七项探针包括五项 `BLOCK`／`REJECTED`／`DENIED` 结果、一项 `OPEN` 能力缺口和一项 `AUTHORIZATION_REQUIRED` 权限边界。
 
 `AWAITING_REVIEW` 不等于失败：它表示程序已经完成自身核验，但不冒充外部独立审查。原始字节可能因时间戳不同而变化；通过的是已限定策略下的语义重复性，不是逐字节确定性。`public_test_ready: false` 等原始包装字段不应手工改成 true；发布授权与人工/AI证据判定是分开的记录。
 
@@ -66,7 +68,7 @@ echo $?
 
 ## 4.1 验证器能证明什么
 
-**独立验证器检查证据内部一致性，不能单独证明证据来自真实运行，也不能证明拒绝探针实际执行过。** 自洽的虚构证据可以通过第一层检查。哈希匹配和七行拒绝记录均不等于执行真实性证明；官方流程还依赖固定运行时在可信专用主机上实际执行。
+**独立验证器检查证据内部一致性，不能单独证明证据来自真实运行，也不能证明负路径／边界探针实际执行过。** 自洽的虚构证据可以通过第一层检查。哈希匹配和七行边界探针记录均不等于执行真实性证明；官方流程还依赖固定运行时在可信专用主机上实际执行。
 
 | 检查层 | 覆盖范围与限制 |
 | --- | --- |
