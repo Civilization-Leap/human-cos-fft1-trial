@@ -100,8 +100,12 @@ def canonical_hash(obj):
     )
 
 
+def decode_json(data):
+    return json.loads(data.decode("utf-8"))
+
+
 def read(path):
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return decode_json(Path(path).read_bytes())
 
 
 def verify_negative_matrix(rows, matrix_passed):
@@ -173,7 +177,7 @@ def verify_cross_bindings(doc, receipt, checkpoint, snapshot):
     )
 
 
-def verify_result(doc):
+def _verify_result(doc):
     require(
         doc["result_hash"]
         == canonical_hash({k: v for k, v in doc.items() if k != "result_hash"}),
@@ -228,6 +232,13 @@ def verify_result(doc):
     )
 
 
+def verify_result(doc):
+    try:
+        _verify_result(doc)
+    except KeyError as exc:
+        raise ValueError(f"missing required result field: {exc.args[0]}") from exc
+
+
 def verify_directory(root):
     root = Path(root).resolve()
     doc = read(root / "full_function_trial_result.json")
@@ -243,6 +254,7 @@ def verify_directory(root):
         set(manifest) == {"evidence_package/" + name for name in names},
         "manifest set differs",
     )
+    evidence_docs = {}
     for name, expected in manifest.items():
         path = root / name
         require(
@@ -251,15 +263,14 @@ def verify_directory(root):
             and path.resolve().is_relative_to(root),
             "invalid evidence file",
         )
-        require(
-            digest(path.read_bytes()) == expected, "evidence hash mismatch: " + name
-        )
-    evidence = root / "evidence_package"
+        data = path.read_bytes()
+        require(digest(data) == expected, "evidence hash mismatch: " + name)
+        evidence_docs[Path(name).name] = decode_json(data)
     require(
-        read(evidence / "stage_trace.json") == doc["stage_trace"],
+        evidence_docs["stage_trace.json"] == doc["stage_trace"],
         "trace binding mismatch",
     )
-    receipt = read(evidence / "application_chain_receipt.json")
+    receipt = evidence_docs["application_chain_receipt.json"]
     require(
         receipt["receipt_hash"]
         == canonical_hash({k: v for k, v in receipt.items() if k != "receipt_hash"}),
@@ -275,7 +286,7 @@ def verify_directory(root):
         and receipt["final_runtime_state"] == STATES[-1],
         "receipt state differs",
     )
-    checkpoint = read(evidence / "application_chain_checkpoint.json")
+    checkpoint = evidence_docs["application_chain_checkpoint.json"]
     require(
         checkpoint["checkpoint_hash"]
         == canonical_hash(
@@ -293,7 +304,7 @@ def verify_directory(root):
             doc["stage_terminal_hashes"][stage] == receipt[key] == checkpoint[key],
             "stage binding mismatch: " + stage,
         )
-    snapshot = read(evidence / "persistence_snapshot.json")
+    snapshot = evidence_docs["persistence_snapshot.json"]
     require(
         canonical_hash(snapshot)
         == doc["persistence"]["snapshot_hash"]
