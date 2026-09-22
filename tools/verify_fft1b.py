@@ -127,6 +127,8 @@ def verify_negative_matrix(rows, matrix_passed):
             "negative semantics invalid: " + case,
         )
     safety = by_case["research_safety_block"]
+    # The single downstream invocation is the PASS control. The BLOCK attempt must
+    # add zero invocations; it is not a count of one blocked callback execution.
     require(
         safety.get("expected") == "BLOCK"
         and safety.get("boundary") == "code-owned S7 Research Safety admission"
