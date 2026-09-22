@@ -1,6 +1,9 @@
 import copy
+import hashlib
+import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -8,7 +11,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 from compare_repeat import compare_snapshots
-from verify_fft1b import SHA, canonical_hash, verify_cross_bindings, verify_negative_matrix
+from verify_fft1b import (
+    AUTHORITY,
+    REQUIRED_TABLES,
+    SHA,
+    STATES,
+    canonical_hash,
+    verify_cross_bindings,
+    verify_directory,
+    verify_negative_matrix,
+)
 
 
 def valid_negative_matrix():
@@ -74,6 +86,114 @@ def valid_negative_matrix():
             "decision_reason": "globally denied",
         },
     ]
+
+
+def write_self_consistent_fixture(root, verdict):
+    evidence = root / "evidence_package"
+    evidence.mkdir(parents=True)
+    tables = sorted(REQUIRED_TABLES)
+    snapshot = {
+        "tables": [
+            {
+                "table": table,
+                "row_count": 1,
+                "rows": [{"content": {"verdict": verdict}}],
+            }
+            for table in tables
+        ]
+    }
+    snapshot_hash = canonical_hash(snapshot)
+    snapshot_json = json.dumps(snapshot, sort_keys=True, separators=(",", ":"))
+    terminals = {
+        "S5_CDE": hashlib.sha256(b"s5").hexdigest(),
+        "S6_WCI": hashlib.sha256(b"s6").hexdigest(),
+        "S7_SCS_NARROW": hashlib.sha256(b"s7").hexdigest(),
+        "S8_EVAL_NARROW": hashlib.sha256(b"s8").hexdigest(),
+    }
+    trace = [
+        {
+            "sequence": index,
+            "source": source,
+            "target": target,
+            "status": "ALLOWED",
+        }
+        for index, (source, target) in enumerate(zip(STATES, STATES[1:]), 1)
+    ]
+    receipt = {
+        "migration_names": [f"{index:04}" for index in range(1, 8)],
+        "s5_terminal_hash": terminals["S5_CDE"],
+        "s6_terminal_hash": terminals["S6_WCI"],
+        "s7_terminal_hash": terminals["S7_SCS_NARROW"],
+        "s8_terminal_hash": terminals["S8_EVAL_NARROW"],
+        "tables_exercised": tables,
+        "evidence_snapshot_json": snapshot_json,
+        "evidence_snapshot_hash": snapshot_hash,
+        "stage_trace": trace,
+        "final_runtime_state": STATES[-1],
+        "migrations_rolled_back": True,
+    }
+    receipt["receipt_hash"] = canonical_hash(receipt)
+    checkpoint = {
+        "s5_terminal_hash": terminals["S5_CDE"],
+        "s6_terminal_hash": terminals["S6_WCI"],
+        "s7_terminal_hash": terminals["S7_SCS_NARROW"],
+        "s8_terminal_hash": terminals["S8_EVAL_NARROW"],
+        "tables_exercised": tables,
+        "evidence_snapshot_json": snapshot_json,
+        "evidence_snapshot_hash": snapshot_hash,
+    }
+    checkpoint["checkpoint_hash"] = canonical_hash(checkpoint)
+    result = {
+        "status": "PASS",
+        "adapter_lane": "MOCK_ONLY",
+        "package_source_identity": {
+            "kind": "package_build_commit",
+            "commit_sha": SHA,
+        },
+        "transition_count": 12,
+        "stage_trace": trace,
+        "final_runtime_state": STATES[-1],
+        "migrations_applied": [f"{index:04}" for index in range(1, 8)],
+        "authority": {key: False for key in AUTHORITY},
+        "n3_status": "OPEN",
+        "sbx7_freeze": False,
+        "real_case_effectiveness": "NOT_DEMONSTRATED",
+        "negative_matrix": valid_negative_matrix(),
+        "negative_matrix_passed": True,
+        "persistence": {
+            "readback_verified": True,
+            "cleanup_verified": True,
+            "tables_exercised": tables,
+            "snapshot_hash": snapshot_hash,
+        },
+        "s8_narrow_sidecars": {
+            "persisted": True,
+            "terminal_hash": terminals["S8_EVAL_NARROW"],
+        },
+        "stage_terminal_hashes": terminals,
+        "application_chain_receipt_hash": receipt["receipt_hash"],
+    }
+    result["result_hash"] = canonical_hash(result)
+    files = {
+        "stage_trace.json": trace,
+        "application_chain_receipt.json": receipt,
+        "application_chain_checkpoint.json": checkpoint,
+        "persistence_snapshot.json": snapshot,
+    }
+    for name, value in files.items():
+        (evidence / name).write_text(json.dumps(value), encoding="utf-8")
+    (root / "full_function_trial_result.json").write_text(
+        json.dumps(result), encoding="utf-8"
+    )
+    manifest = {
+        f"evidence_package/{name}": hashlib.sha256(
+            (evidence / name).read_bytes()
+        ).hexdigest()
+        for name in files
+    }
+    (root / "evidence_manifest.json").write_text(
+        json.dumps(manifest), encoding="utf-8"
+    )
 
 
 class VerifierHardeningTests(unittest.TestCase):
@@ -150,6 +270,16 @@ class VerifierHardeningTests(unittest.TestCase):
         bad["s8_narrow_sidecars"]["terminal_hash"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "S8 sidecar"):
             verify_cross_bindings(bad, receipt, checkpoint, snapshot)
+
+    def test_single_round_accepts_consistently_rebound_row_content(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            baseline = root / "baseline"
+            mutated = root / "mutated"
+            write_self_consistent_fixture(baseline, "DENY")
+            write_self_consistent_fixture(mutated, "ALLOW")
+            self.assertEqual(verify_directory(baseline)["status"], "PASS")
+            self.assertEqual(verify_directory(mutated)["status"], "PASS")
 
     def test_bounded_comparator_rejects_equal_inventory_row_content_change(self):
         policy = {
