@@ -22,6 +22,33 @@ The project adopts **“利他为先的利己” — pursuing one's own benefit 
 
 For this release, the role analyses are prewritten Mock content. Running them tests processing and verification, not the tool's ability to discover new consequences. A continuous reference/causal-memory/next-purpose-generation loop is not demonstrated by this preview. No custom-case or live-model execution authority is added by these instructions. Do not request or approve an input merely to turn an execution gate green.
 
+### 原则与缘由：利他为先的利己
+
+**“利他为先的利己”是本项目固定的底层原则。** 在形成目的、选择方向和设计规则时，先考虑他者的真实需要、发展能力及共同存续条件，使自身的发展建立在增进这些条件之上。它不要求放弃自身利益，也不以他者依赖自己作为成功标准。
+
+这一原则的因果缘由是：主体的长期发展包含跨时间、跨地域的关系与相互依赖。若各方持续通过削弱、控制或排除他者获益，并把他者的自保视为威胁，就可能形成“自保—威胁—反制—更强自保”的升级循环；在出路被相互封闭、目的又不允许修正的条件下，对立将失去内部化解的可能。反之，回应真实需要、增强他者能力，可以通过信任、合作、知识共享和共同韧性，支持自身持续发展。这是需要逐环检验的因果解释，不是对任何具体方案必然成功的证明。
+
+资源、人才和知识的汇聚还可能创造新增能力，再反向、多向输出，促进多地发展，并反馈为新的创造与合作。测试不能只按一时一地的存量得失判断；也不能假定汇聚自动产生普惠输出。须检查输出的具体渠道、受益主体、成本承担、时间尺度及反向反馈。
+
+**测试怎样使用这一参照：**
+- 说明案例的应用目的，以及效率、收益、排名、规模等过程目标服务于什么。
+- 追踪不同主体及未来阶段的收益、损失、能力变化与纠错空间；检查是否以损害共同发展基础换取局部成功。
+- 展开“汇聚—新增能力—多向输出—多地发展—反馈”的实际或假设链条，区分来源事实、因果推断、模拟结果和未知。
+- 主动寻找反例、替代解释和使结论失效的条件。只有前提与机制得到支持时，才讨论方向判断的强度；不能把固定原则当作经验结论的证明。
+- 参数、算法、过程逻辑、中间目标和具体方案可依据证据修正。保持原目标同样可以合理；不能为了显示“发生改变”而强行改目的。
+
+评分不奖励复述原则、赞同项目或使用安全措辞。测试者可以质疑该原则及其因果解释，结论允许无增益或反向结果；项目的固定设计参照与测试者的独立判断须同时保留。报告中的事实性结论必须有相应证据，不以短期互惠或回报是否立即发生衡量原则是否得到贯彻。
+
+本节是目的说明与分析要求，不是新增运行能力或现实执行授权。当前 fixed Mock preview 只能提供其已公开的工程测试；软件外的案例推演应单列为案例分析，不能记作运行时产生的分析或现实有效性验证。比较研究继续遵循上文对说明干预、先前接触和冻结结果的规定。
+
+### Rationale and testing implications (English)
+
+The fixed principle is to pursue one's own benefit by giving priority to benefiting others, starting at purpose formation and rule design. Long-term development depends on relationships across actors, places and time. Repeatedly gaining by weakening or controlling others can create reinforcing threat–defence cycles; closing every corrective route while refusing to revise purposes can make such conflict internally irresolvable. Meeting real needs and strengthening others' capabilities can instead support trust, cooperation and shared resilience. Each causal link requires examination; this rationale does not prove that a particular policy will succeed.
+
+Concentrating talent, knowledge and resources can generate new capabilities, with reciprocal and multidirectional diffusion that supports development elsewhere and feeds back into further creation. Examine mechanisms, beneficiaries, costs, time horizons and counterexamples; neither assume a zero-sum transfer nor automatic shared benefit. Distinguish facts, hypotheses, simulations and unknowns. Keep means revisable and do not let scores, efficiency, scale or system continuation replace the purpose they serve.
+
+Agreement with the principle earns no test credit. Testers may challenge it and report no benefit or adverse outcomes. A justified unchanged goal is valid. This explanation adds no runtime capability, approval or real-world authority; external case analysis is not a result produced by the fixed Mock runtime. The comparative-study controls above still apply.
+
 ## Low-cost first contribution
 
 Choose **one** route; do not acquire a new host or API subscription solely to participate.
