@@ -2,6 +2,12 @@
 
 Author: 子君赋. Produced by Civilization Leap Research Group. This document is licensed under Apache-2.0.
 
+> **Human-COS has one primary purpose: before an action can no longer be corrected and its consequences become irreversible, make the likely results of goals and actions—and their causal paths—visible early enough to avoid outcomes understood only after the damage is done.**
+
+“Results” includes effects on oneself and others, effects across time, feedback loops, irreversible thresholds, alternatives and remaining correction space. This does not promise complete prediction or transfer decision authority to the tool. It seeks to reduce avoidable consequences that could have been seen earlier but remained hidden by narrow goals, missing causal links or invisible affected parties.
+
+**The current fixed Mock S5→S8 narrow preview does not establish that this purpose has been achieved and cannot run a participant's custom real-world case.** It exposes only a fixed synthetic engineering chain for testing execution, boundaries, evidence and false-success paths.
+
 Human-COS FFT-1 is now available as a public trial preview. We invite developers and researchers working on Python, Docker, AI evaluation or reproducible systems to test a concrete question: does this fixed analysis pipeline actually perform the transitions, rejections, evidence readback and cleanup that it reports?
 
 **Lowest-cost entry:** if you do not already have a suitable Docker host, take the [15-minute read-only route](AGENT_TEST_TASK.md#low-cost-first-contribution). Compare one claim with one public source path; submit one concrete discrepancy or unresolved question as `REVIEW_ONLY`. No host rental or model API purchase is requested. A limited review with no finding is not validation.
@@ -40,4 +46,4 @@ Original released code, tools and supporting docs use Apache-2.0; third-party te
 
 ## Short version for sharing
 
-Human-COS FFT-1 public preview seeks reproducibility and failure-reporting tests: a fixed Mock S5–S8 narrow pipeline checking 12 ordered transitions, 7 negative-path/boundary probes, PostgreSQL readback and cleanup. Python + a trusted dedicated Docker host; no model keys. Help find failed runs, false passes or onboarding obstacles. Live-model quality and real-case effectiveness are not established; known limitations remain documented. Source and instructions: https://github.com/Civilization-Leap/human-cos-fft1-trial . Sanitized feedback only—no raw evidence uploads.
+Human-COS seeks to make likely results and causal paths visible while action can still be corrected, avoiding consequences understood only afterward. The current FFT-1 public preview does not establish that purpose; it offers a fixed Mock S5–S8 narrow pipeline for reproducibility and failure-reporting tests, checking 12 ordered transitions, 7 negative-path/boundary probes, PostgreSQL readback and cleanup. Python + a trusted dedicated Docker host; no model keys. Help find failed runs, false passes or onboarding obstacles. Live-model quality and real-case effectiveness are not established; known limitations remain documented. Source and instructions: https://github.com/Civilization-Leap/human-cos-fft1-trial . Sanitized feedback only—no raw evidence uploads.
