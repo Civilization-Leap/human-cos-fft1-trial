@@ -2,6 +2,10 @@
 
 Author: 子君赋. Produced by Civilization Leap Research Group. Licensed under Apache-2.0.
 
+> **Primary purpose / 主要目的：** Human-COS 的主要目标和目的，是在人或 AI 的行动仍可修正、后果尚未不可逆之前，让目标和行动可能带来的结果及其因果路径提前显现，避免现实发生后只剩“早知如此，何必当初”。 Human-COS seeks to make likely results and causal paths visible before action can no longer be corrected and consequences become irreversible.
+
+**This public task tests a narrow artifact, not whether that purpose has already been achieved.** The preview uses a fixed synthetic case and prewritten Mock outputs; it does not generate fresh analysis of a tester's real-world case, guarantee complete foresight or receive decision authority.
+
 This task is for an AI system or autonomous agent starting from the public release only. The target is the **fixed Mock S5→S8 narrow FFT-1 preview**, not the complete Human-COS system.
 
 ## Project purpose: read before testing
