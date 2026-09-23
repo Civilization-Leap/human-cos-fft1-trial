@@ -2,6 +2,12 @@
 
 作者：子君赋；出品：文明跃迁研究组。
 
+> **Primary purpose / 主要目的：** Human-COS 的主要目标和目的，是在人或 AI 的行动仍可修正、后果尚未不可逆之前，让目标和行动可能带来的结果及其因果路径提前显现，避免现实发生后只剩“早知如此，何必当初”。 / Before an action can no longer be corrected and its consequences become irreversible, Human-COS seeks to make likely results and causal paths visible early enough to avoid outcomes understood only after the damage is done.
+
+This purpose includes consequences for oneself and others, effects across time, feedback loops, irreversible thresholds, alternatives and remaining correction space. It is not a promise of complete prediction and does not transfer decision authority to the tool.
+
+**The current public artifact does not establish that this purpose has been achieved.** It exposes only a fixed synthetic Mock engineering chain for testing execution, boundaries, evidence and false-success paths; it does not analyze a tester's custom real-world case.
+
 A publicly runnable, fixed Mock S5→S8 narrow trial intended for reproducibility testing. This snapshot includes source files matching the project-maintained inventory, a Docker runner, evidence verification tools and Apache-2.0 documentation.
 
 **Test question:** Can you reproduce the fixed Mock S5→S8 narrow trial, and find a case where it reports success incorrectly?
