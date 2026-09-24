@@ -98,3 +98,27 @@ Use this repository's Issues for a sanitized summary: package SHA, operating sys
 ## License
 
 Original inventoried code, tools and supporting docs: [Apache-2.0](LICENSE), with [NOTICE](NOTICE) and [scope](LICENSE_SCOPE.md). Third-party dependencies retain their own terms.
+
+### Related research / 相关研究
+
+- **Human-COS Public Core:** https://github.com/Civilization-Leap/human-cos-public-core
+- **CI-001 · Irreversible Closure Criterion:** https://github.com/Civilization-Leap/ci-001
+- **AGI goal / purpose research:** https://github.com/Civilization-Leap/Civilization-Leap/tree/main/research/beyond-alignment-and-control
+
+
+---
+
+## Continue exploring / 继续阅读
+
+This repository covers one specific research surface within the wider Civilization Leap research program. It does not by itself validate the wider Civilization Leap theory.
+
+本仓库只研究文明跃迁体系中的一个具体问题。使用、复现、批评、证伪或在许可范围内复用本项目，不要求先接受完整文明跃迁理论。
+
+- **Civilization Leap main portal / 理论体系总门户:** https://github.com/Civilization-Leap/Civilization-Leap
+- **Current version baseline / 当前有效版本:** https://github.com/Civilization-Leap/Civilization-Leap/blob/main/VERSION_BASELINE.md
+- **Research index / 研究索引:** https://github.com/Civilization-Leap/Civilization-Leap/blob/main/RESEARCH_INDEX.md
+- **Public website / 文明跃迁网站:** https://www.civitas.top/
+- **Public library / 公开文库:** https://www.civitas.top/library/
+
+Agreement with the wider framework is not required to test or criticize this project.
+
